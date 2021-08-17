@@ -17,11 +17,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent vista= loadFXML("/com/mycompany/proyecto2_grupo2/vistaPrincipal.fxml");
-        
-        scene = new Scene(vista, 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VistaPrincipal.fxml"));
+            Parent root = fxmlLoader.load();
+            scene = new Scene(root, 400, 200);
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 
     public static void setRoot(Parent root) {

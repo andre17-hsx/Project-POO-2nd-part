@@ -1,0 +1,3 @@
+andaapol,1234,Andres Aguirre,andaapol@espol.edu.ec
+jeras,1234,Jefferson Eras,jeras@espol.edu.ec
+admin,admin,Administrador,admin@gmail.com

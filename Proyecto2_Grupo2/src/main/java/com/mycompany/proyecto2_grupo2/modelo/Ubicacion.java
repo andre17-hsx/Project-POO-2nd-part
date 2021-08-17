@@ -10,8 +10,8 @@ package com.mycompany.proyecto2_grupo2.modelo;
  * @author rociomera
  */
 public class Ubicacion {
-    private double x;
-    private double y;
+    private double x; //Manzana
+    private double y; //Villa
     public Ubicacion(double x, double y){
         this.x = x;
         this.y = y;
