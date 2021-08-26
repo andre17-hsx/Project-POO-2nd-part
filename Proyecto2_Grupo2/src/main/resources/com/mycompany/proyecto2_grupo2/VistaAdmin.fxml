@@ -20,19 +20,9 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu fx:id="MenuMapa" mnemonicParsing="false" text="Mapa">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="MenuReportes" mnemonicParsing="false" onAction="#VerReportes" text="Reportes" />
                   </items>
                 </Menu>
               </menus>

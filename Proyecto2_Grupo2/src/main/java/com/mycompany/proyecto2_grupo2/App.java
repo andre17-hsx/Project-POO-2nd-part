@@ -13,14 +13,14 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VistaPrincipal.fxml"));
             Parent root = fxmlLoader.load();
-            scene = new Scene(root, 400, 200);
+            scene = new Scene(root, 590, 490);
             stage.setScene(scene);
             stage.show();
         }catch(IOException ex){

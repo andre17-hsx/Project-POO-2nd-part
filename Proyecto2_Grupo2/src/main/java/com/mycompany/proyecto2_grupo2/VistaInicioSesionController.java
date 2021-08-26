@@ -57,12 +57,18 @@ public class VistaInicioSesionController implements Initializable {
                 encontrado = true;
                 if(u instanceof Administrador){
                     try{
-                        FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaAdmin.fxml"));
+                        /*/FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaAdmin.fxml"));
                         Parent viewAdmin = loader.load();
                         Scene sc= new Scene(viewAdmin);
                         Stage st= new Stage();
                         st.setScene(sc);
                         st.show();
+                        /*/FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaAdmin.fxml"));
+                        Parent root = loader.load();
+                        VistaAdminController ac = loader.<VistaAdminController>getController();
+                        System.out.println(ac);
+                        
+                        App.scene.setRoot(root);
                         
                     }catch(IOException ex){
                         System.out.println("No se ha podiddo cargar la vista");
@@ -71,11 +77,14 @@ public class VistaInicioSesionController implements Initializable {
                 else if(u instanceof Residente){
                     try{
                         FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaResidente.fxml"));
-                        Parent viewResidente = loader.load();
-                        Scene sc= new Scene(viewResidente);
+                        Parent root = loader.load();
+                        VistaResidenteController rc= loader.<VistaResidenteController>getController();
+                        System.out.println(rc);
+                        App.scene.setRoot(root);
+                        /*/Scene sc= new Scene(viewResidente);
                         Stage st= new Stage();
                         st.setScene(sc);
-                        st.show();
+                        st.show();*/
                         
                     }catch(IOException ex){
                         System.out.println("No se ha podiddo cargar la vista");

@@ -12,9 +12,14 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +38,10 @@ public class VistaAdminController implements Initializable {
 
     @FXML
     private Pane paneMapaCiudadela;
+    @FXML
+    private MenuItem MenuReportes;
+    @FXML
+    private Menu MenuMapa;
     
     /**
      * Initializes the controller class.
@@ -67,6 +76,15 @@ public class VistaAdminController implements Initializable {
             st.setOnMouseClicked(
                     //para que no se propague
                     (MouseEvent ev) ->{
+                        /*/
+                        1: Aqui muestro una nueva scene para ingresar los datos
+                        2: Obtengo los datos de los textfields
+                        3: Con esos datos modifico el archivo Casas.txt (Creo que las casas deberian tener un pin, para relacionarlo con mi Residente)
+                        4: Cierro la scene.
+                        
+                        /*/
+                        
+                        
                         //panelAgente.getChildren().clear();
                         //Agente a = t.getAgente();
                         //Label lagNombre = new Label(a.getNombre());
@@ -103,4 +121,18 @@ public class VistaAdminController implements Initializable {
         }
         return "CASA VACIA";
     }
+
+    @FXML
+    private void VerReportes(ActionEvent event) {
+        try{
+                        FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaReportes.fxml"));
+                        Parent root = loader.load();
+                        VistaReportesController repc= loader.<VistaReportesController>getController();
+                        System.out.println(repc);
+                        App.scene.setRoot(root);
+        }catch(IOException ex){
+                        System.out.println("No se ha podiddo cargar la vista");
+                    }
+    }
+    
 }

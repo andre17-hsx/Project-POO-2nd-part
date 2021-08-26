@@ -43,10 +43,15 @@ public class VistaPrincipalController implements Initializable {
         try{
             FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaInicioSesion.fxml"));
             
-            Parent root = loader.load();
-            VistaInicioSesionController ic = loader.<VistaInicioSesionController>getController();
-            System.out.println(ic);
-            App.scene.setRoot(root);
+            Parent viewInicioSesion =loader.load();
+            
+            Scene sc= new Scene(viewInicioSesion);
+            
+            Stage st= new Stage();
+            
+            st.setScene(sc);
+            
+            st.show();
             
         }catch(IOException ex){
             System.out.println("no se ha podido cargar la vista");
