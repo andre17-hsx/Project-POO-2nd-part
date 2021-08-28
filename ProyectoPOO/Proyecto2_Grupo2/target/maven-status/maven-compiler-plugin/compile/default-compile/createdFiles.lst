@@ -1,0 +1,14 @@
+com\mycompany\proyecto2_grupo2\VistaInicioSesionController.class
+com\mycompany\proyecto2_grupo2\data\AdminsData.class
+com\mycompany\proyecto2_grupo2\modelo\Administrador.class
+com\mycompany\proyecto2_grupo2\VistaAdministradorController.class
+com\mycompany\proyecto2_grupo2\modelo\Ubicacion.class
+com\mycompany\proyecto2_grupo2\data\ResidentesData.class
+com\mycompany\proyecto2_grupo2\data\CasasData.class
+com\mycompany\proyecto2_grupo2\data\InicializarSistema.class
+module-info.class
+com\mycompany\proyecto2_grupo2\modelo\Usuario.class
+com\mycompany\proyecto2_grupo2\App.class
+com\mycompany\proyecto2_grupo2\VistaInicioController.class
+com\mycompany\proyecto2_grupo2\modelo\Casa.class
+com\mycompany\proyecto2_grupo2\modelo\Residente.class

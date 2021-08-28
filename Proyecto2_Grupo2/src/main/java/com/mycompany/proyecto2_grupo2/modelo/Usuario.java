@@ -93,9 +93,9 @@ public abstract class Usuario {
             while((linea = bf.readLine())!=null){
                 System.out.println(linea);
                 String[] p = linea.split(",");
-                String[] u = p[6].split(":");
+                //String[] u = p[6].split(":");
                 //Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                Usuario r = new Residente(p[0],p[1],p[2],p[3],p[4],p[5],Double.valueOf(u[0]),Double.valueOf(u[1]));
+                Usuario r = new Residente(p[0],p[1],p[2],p[3],p[4],p[5]);
                 usuarios.add(r);
             }         
         }  catch (IOException ex) {

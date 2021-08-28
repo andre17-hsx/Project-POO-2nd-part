@@ -22,31 +22,18 @@ import java.util.List;
 public class Residente extends Usuario{
     private String genero;
     private String pin;
-    //private String nombre;
-    private double manzana;
-    private double villa;
-    
+    private static List<Residente> listaresidentes;
     public Residente(String usuario, String password,String nombre,String correo) {
         super(usuario, password,nombre,correo);
     }
     
-    public Residente(String usuario, String password,String nombre,String correo,String genero, String pin,double manzana,double villa){
+    public Residente(String usuario, String password,String nombre,String correo,String genero, String pin){
         this(usuario,password,nombre,correo);
         this.genero=genero;
         this.pin=pin;
         //this.nombre = nombre;
-        this.manzana = manzana;
-        this.villa = villa;
-    }
     
-    public double getManzana(){
-        return manzana;
     }
-    
-    public double getVilla(){
-        return villa;
-    }
-    
     /*public String getNombre(){
         return nombre;
     }*/
@@ -54,7 +41,7 @@ public class Residente extends Usuario{
     
     public static List<Residente> cargarResidentes(){
         String ruta = "Residentes.txt";
-        List<Residente> residentes = new ArrayList<>();
+        //List<Residente> residentes = new ArrayList<>();
         try(InputStream input = App.class.getResource(ruta).openStream();
                 BufferedReader bf = new BufferedReader(
                                     new InputStreamReader(input,"UTF-8"))){
@@ -62,16 +49,16 @@ public class Residente extends Usuario{
             while((linea = bf.readLine())!=null){
                 System.out.println(linea);
                 String[] p = linea.split(",");
-                String[] u = p[6].split(":");
+                //String[] u = p[6].split(":");
                 //Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                Residente r = new Residente(p[0],p[1],p[2],p[3],p[4],p[5],Double.valueOf(u[0]),Double.valueOf(u[1]));
-                residentes.add(r);
+                Residente r = new Residente(p[0],p[1],p[2],p[3],p[4],p[5]);
+                listaresidentes.add(r);
             }         
         }  catch (IOException ex) {
             System.out.println("no se pudo cargar la informacion de los Residentes");
             ex.printStackTrace();
         }
-        return residentes;
+        return listaresidentes;
     }
     
     /*/@Override
@@ -81,4 +68,13 @@ public class Residente extends Usuario{
             new Administrador("Jose", "xyz"));
         return residentes;
     }*/
+    
+    public static Residente buscarResidente(String pin){
+        for (Residente r: listaresidentes){
+            if (r.pin.equals(pin)){
+                return r;
+            }
+         }
+        return null;
+    }
 }

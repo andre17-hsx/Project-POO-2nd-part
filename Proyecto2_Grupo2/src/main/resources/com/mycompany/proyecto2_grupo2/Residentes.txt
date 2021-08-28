@@ -1,3 +1,3 @@
-resi1,1234,Orlando Molina,orlandomolina@hotmail.com,MASCULINO,1477,194:60
-resi2,1234,Marcos Cruz,marcoscruz@hotmail.com,MASCULINO,4445,290:90
-resi3,1abc,Lucy Gomez,lucygomez@hotmail.com,FEMENINO,5569,275:215
+resi1,1234,Orlando Molina,orlandomolina@hotmail.com,MASCULINO,1477
+resi2,1234,Marcos Cruz,marcoscruz@hotmail.com,MASCULINO,4445
+resi3,1abc,Lucy Gomez,lucygomez@hotmail.com,FEMENINO,5569

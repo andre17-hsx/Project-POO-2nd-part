@@ -29,7 +29,7 @@ public class Casa {
     private Ubicacion ubicacion;
     private String nombreVilla;
     private boolean ocupada;
-    //private int villa;
+    //private String id;
     
     public Casa(String nombreVilla, Ubicacion ubicacion, Residente residente,boolean ocupado){
         this.nombreVilla=nombreVilla;

@@ -112,7 +112,7 @@ public class VistaAdminController implements Initializable {
     
     
     
-    public String buscarResidente(double manzana, double villa){
+    /*/public String buscarResidente(){
         List<Residente> residentes = Residente.cargarResidentes();
           for(Residente re: residentes){   
               if((re.getManzana()==manzana) && (re.getVilla()==villa)){
@@ -120,7 +120,7 @@ public class VistaAdminController implements Initializable {
               }  
         }
         return "CASA VACIA";
-    }
+    }/*/
 
     @FXML
     private void VerReportes(ActionEvent event) {
