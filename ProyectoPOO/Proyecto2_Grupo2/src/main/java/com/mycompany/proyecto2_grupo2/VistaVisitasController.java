@@ -5,72 +5,85 @@
  */
 package com.mycompany.proyecto2_grupo2;
 
-import com.mycompany.proyecto2_grupo2.data.VehiculosData;
 import com.mycompany.proyecto2_grupo2.modelo.Residente;
-import com.mycompany.proyecto2_grupo2.modelo.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-
 /**
  * FXML Controller class
  *
  * @author andya
  */
-public class VistaVehiculosController implements Initializable {
+public class VistaVisitasController implements Initializable {
+
 
     @FXML
-    private TextField txtMatricula;
-    @FXML
-    private Button btnRegistrarVehiculo;
-    
-    private Residente residente;
-    @FXML
-    private Menu btnRegistroVehiculos;
+    private Menu btnVisitas;
     @FXML
     private MenuItem btnDatos;
     @FXML
-    private MenuItem btnVisitas;
+    private MenuItem btnVehiculos;
+    @FXML
+    private Button btnRegistrarVisita;
+    @FXML
+    private TextField txtfechaInicio;
+    @FXML
+    private TextField txtFechaFin;
+    @FXML
+    private Button btnBuscarVisitas;
+    @FXML
+    private TableColumn<?, ?> filaNombre;
+    @FXML
+    private TableColumn<?, ?> filaCedula;
+    @FXML
+    private TableColumn<?, ?> filaCodigo;
+    @FXML
+    private TableColumn<?, ?> filaFecha;
+    @FXML
+    private TableColumn<?, ?> filaEstado;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtCedula;
+    @FXML
+    private TextField txtCorreo;
+    @FXML
+    private TextField txtFecha;
+    
+    private Residente residente;
     /**
+     *
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
     }    
-
-    public void setResidente(Residente residente){
+    
+    public void setResidente(Residente r){
         this.residente=residente;
+        
     }
+    
     public Residente getResidente(){
         return residente;
     }
     @FXML
-    private void RegistrarnuevoVehiculo(MouseEvent event) {
-        ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
-        vehiculos.add(new Vehiculo(txtMatricula.getText(), residente));
-        VehiculosData.escribirVehiculos(vehiculos);
-        Alert al= new Alert(Alert.AlertType.INFORMATION);
-        al.setContentText("Se ha registrado su vehiculo");
-        al.show();
-    }
-
-    @FXML
-    private void mostrarDatos(ActionEvent event) {
-         try{
+    private void VerDatos(ActionEvent event) {
+        try{
                         FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaResidente.fxml"));
             
                         Parent root = loader.load();
@@ -85,19 +98,20 @@ public class VistaVehiculosController implements Initializable {
     }
 
     @FXML
-    private void MostrarVisitas(ActionEvent event) {
+    private void registrarVehiculo(ActionEvent event) {
         try{
-                        FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaVisitas.fxml"));
+                        FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaVehiculos.fxml"));
             
                         Parent root = loader.load();
-                        VistaVisitasController vc = loader.<VistaVisitasController>getController();
+                        VistaVehiculosController vc = loader.<VistaVehiculosController>getController();
                         System.out.println(vc);
-                        vc.setResidente(VistaResidenteController.getResidente());
+                        vc.setResidente(getResidente());
                         App.scene.setRoot(root);
-                        
-                    }catch(IOException ex){
+            
+                        }catch(IOException ex){
                         System.out.println("no se ha podido cargar la vista");
-                    }
+                        }
     }
-    
+
+
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaAdministradorController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaAdministradorController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="709.0" text="Vista Administrador">
          <font>
@@ -30,7 +30,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane fx:id="paneMapa" prefHeight="270.0" prefWidth="579.0" />
+      <Pane fx:id="paneMapa" prefHeight="483.0" prefWidth="679.0" />
       <Pane prefHeight="147.0" prefWidth="646.0">
          <children>
             <GridPane fx:id="formularioRegistro" disable="true" layoutY="30.0" prefHeight="102.0" prefWidth="653.0">

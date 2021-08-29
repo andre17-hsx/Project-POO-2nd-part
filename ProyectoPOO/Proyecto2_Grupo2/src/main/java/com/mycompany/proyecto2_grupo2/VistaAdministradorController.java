@@ -100,7 +100,7 @@ public class VistaAdministradorController implements Initializable {
                 casa.setOnMouseClicked((MouseEvent ev)->{
                             formularioRegistro.setDisable(false);
                             formularioRegistro.setVisible(true);
-                            formularioRegistro.setLayoutY(200.0);
+                            //formularioRegistro.setLayoutY(200.0);
                             btnGuardar.setOnMouseClicked((MouseEvent ev1)->{
                                 String nombre= txtNombre.getText();
                                 String correo= txtCorreo.getText();

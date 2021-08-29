@@ -105,5 +105,17 @@ public class VistaResidenteController implements Initializable {
 
     @FXML
     private void Visitas(ActionEvent event) {
+        try{
+                        FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaVisitas.fxml"));
+            
+                        Parent root = loader.load();
+                        VistaVisitasController vc = loader.<VistaVisitasController>getController();
+                        System.out.println(vc);
+                        vc.setResidente(VistaResidenteController.getResidente());
+                        App.scene.setRoot(root);
+                        
+                    }catch(IOException ex){
+                        System.out.println("no se ha podido cargar la vista");
+                    }
     }
 }
