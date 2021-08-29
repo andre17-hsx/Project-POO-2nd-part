@@ -31,7 +31,7 @@ public class CasasData {
         }
     }
      
-     public static ArrayList<Casa>leerCasas() 
+     public static ArrayList<Casa> leerCasas() 
         throws IOException, ClassNotFoundException{
         ArrayList<Casa> casas = null;
         try(ObjectInputStream objInputStream 

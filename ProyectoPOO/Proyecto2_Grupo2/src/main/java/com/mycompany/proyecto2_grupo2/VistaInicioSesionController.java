@@ -44,23 +44,27 @@ public class VistaInicioSesionController implements Initializable {
     }    
 
     @FXML
-    private void Ingresar(MouseEvent event) throws IOException, ClassNotFoundException {
-        String usuario = lblUsuario.getText();
-        String contraseña= lblContraseña.getText();
-        boolean c=false;
-            for (Residente r: ResidentesData.leerResidentes()){
+    private void Ingresar(MouseEvent event) /*/throws IOException, ClassNotFoundException/*/ {
+        
+            String usuario = lblUsuario.getText();
+            String contraseña= lblContraseña.getText();
+            boolean c=false;
+            try /*/throws IOException, ClassNotFoundException/*/ {
+             for (Residente r: ResidentesData.leerResidentes()){
                 if(r.getUser().equals(usuario) && r.getContraseña().equals(contraseña)){
                     try{
                         FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaResidente.fxml"));
             
                         Parent root = loader.load();
-                        VistaResidenteController ic = loader.<VistaResidenteController>getController();
-                        System.out.println(ic);
+                        VistaResidenteController rc = loader.<VistaResidenteController>getController();
+                        System.out.println(rc);
+                        rc.setResidente(r);
                         App.scene.setRoot(root);
-                        c= true;
+                        
                     }catch(IOException ex){
                         System.out.println("no se ha podido cargar la vista");
                     }
+                    c= true;
                 }
                 else{
                     Alert al= new Alert(Alert.AlertType.ERROR);
@@ -69,26 +73,43 @@ public class VistaInicioSesionController implements Initializable {
                 }
             }
             if(c==false){
-                for (Administrador a: AdminsData.leerAdmins()){
-                    if(a.getUser().equals(usuario) && a.getContraseña().equals(contraseña)){
-                        try{
-                            FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaAdministrador.fxml"));
-            
-                            Parent root = loader.load();
-                            VistaAdministradorController ic = loader.<VistaAdministradorController>getController();
-                            System.out.println(ic);
-                            App.scene.setRoot(root);
-            
-                        }catch(IOException ex){
-                        System.out.println("no se ha podido cargar la vista");
+                try {
+                    for (Administrador a: AdminsData.leerAdmins()){
+                        if(a.getUser().equals(usuario) && a.getContraseña().equals(contraseña)){
+                            try{
+                                FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaAdministrador.fxml"));
+                                
+                                Parent root = loader.load();
+                                VistaAdministradorController ic = loader.<VistaAdministradorController>getController();
+                                System.out.println(ic);
+                                App.scene.setRoot(root);
+                                
+                            }catch(IOException ex){
+                                System.out.println("no se ha podido cargar la vista");
+                            }
+                        }
+                        else{
+                            Alert al= new Alert(Alert.AlertType.ERROR);
+                            al.setContentText("No existe este usuario");
+                            al.show();
                         }
                     }
-                    else{
-                        Alert al= new Alert(Alert.AlertType.ERROR);
-                        al.setContentText("No existe este usuario");
-                        al.show();
-                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
                 }
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
         }
+        }
+        
+        /*/public String ObtenerResidente(){
+            String usuario = lblUsuario.getText();
+            String contraseña= lblContraseña.getText();
+            return usuario, contraseña;
+        }/*/
 }

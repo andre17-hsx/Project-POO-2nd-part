@@ -5,11 +5,8 @@
  */
 package com.mycompany.proyecto2_grupo2.data;
 
-import static com.mycompany.proyecto2_grupo2.data.CasasData.escribirCasas;
-import static com.mycompany.proyecto2_grupo2.data.CasasData.ruta;
-import com.mycompany.proyecto2_grupo2.modelo.Casa;
 import com.mycompany.proyecto2_grupo2.modelo.Residente;
-import com.mycompany.proyecto2_grupo2.modelo.Ubicacion;
+import com.mycompany.proyecto2_grupo2.modelo.Vehiculo;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,26 +18,25 @@ import java.util.ArrayList;
  *
  * @author andya
  */
-public class ResidentesData {
-    static String ruta = "residentes.dat";
-     public static void escribirResidentes(ArrayList<Residente> residentes){
+public class VehiculosData {
+    static String ruta = "vehiculos.dat";
+     public static void escribirVehiculos(ArrayList<Vehiculo> vehiculos){
         try (ObjectOutputStream objOutputStream =
             new ObjectOutputStream(new FileOutputStream(ruta))){
-            objOutputStream.writeObject(residentes);
+            objOutputStream.writeObject(vehiculos);
             System.out.println("... written to residentes.dat.");
         }catch(IOException ex){
             ex.getMessage();
         }
     }
      
-    public static ArrayList<Residente> leerResidentes() 
+    public static ArrayList<Vehiculo> leerVehiculos() 
         throws IOException, ClassNotFoundException{
-        ArrayList<Residente> residentes = null;
+        ArrayList<Vehiculo> vehiculos = null;
         try(ObjectInputStream objInputStream 
                 = new ObjectInputStream(new FileInputStream(ruta))) {
-          residentes = (ArrayList<Residente>)objInputStream.readObject();
+          vehiculos = (ArrayList<Vehiculo>)objInputStream.readObject();
         }
-        return residentes;
+        return vehiculos;
     }
-    
 }

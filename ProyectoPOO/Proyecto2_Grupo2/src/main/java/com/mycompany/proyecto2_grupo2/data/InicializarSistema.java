@@ -25,12 +25,6 @@ public class InicializarSistema {
         admins.add(new Administrador("admin", "admin"));
         escribirAdmins(admins);
         
-        //Creo mis residentes
-        ArrayList<Residente> residentes = new ArrayList<Residente>();
-        residentes.add(new Residente("andaapol", "1234", "Andre", "andyagpolo@gmail.com", "masculino"));
-        residentes.add(new Residente("jeffras", "abcd", "Jefferson", "correo@gmail.com", "masculino"));
-        escribirResidentes(residentes);
-        
         //Creo mis casas
         ArrayList<Casa> casas = new ArrayList<Casa>();
         casas.add(new Casa(new Ubicacion(70.0,93.0)));
@@ -39,6 +33,14 @@ public class InicializarSistema {
         casas.add(new Casa(new Ubicacion(167.0,301.0)));
         casas.add(new Casa(new Ubicacion(390.0,301.0)));
         escribirCasas(casas);
+        
+        //Creo mis residentes
+        ArrayList<Residente> residentes = new ArrayList<Residente>();
+        residentes.add(new Residente("andaapol", "1234", "Andre", "andyagpolo@gmail.com", "masculino","4567"));
+        residentes.add(new Residente("jeffras", "abcd", "Jefferson", "correo@gmail.com", "masculino","4321"));
+        escribirResidentes(residentes);
+        
+        
     }
      
 }

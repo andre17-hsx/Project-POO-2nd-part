@@ -15,15 +15,44 @@ public class Residente extends Usuario{
     private String nombre;
     private String correo;
     private String genero;
+    private String pin;
+    private Casa casa;
     public Residente(String user, String contraseña) {
         super(user, contraseña);
     }
 
-    public Residente(String user, String contraseña, String nombre, String correo, String genero) {
+    public Residente(String user, String contraseña, String nombre, String correo, String genero, String pin){
         super(user, contraseña);
         this.nombre = nombre;
         this.correo = correo;
         this.genero = genero;
+        this.pin= pin;
+        casa=null;
+    }
+    
+    public Residente(String user, String contraseña, String nombre, String correo, String genero, String pin, Casa casa){
+        super(user, contraseña);
+        this.nombre = nombre;
+        this.correo = correo;
+        this.genero = genero;
+        this.pin= pin;
+        this.casa=casa;
+    }
+
+    public void setCasa(Casa casa) {
+        this.casa = casa;
+    }
+
+    public Casa getCasa() {
+        return casa;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public String getPin() {
+        return pin;
     }
 
     public String getNombre() {
@@ -81,6 +110,11 @@ public class Residente extends Usuario{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Residente{" + "nombre=" + nombre + ", correo=" + correo + ", genero=" + genero + '}';
     }
     
     

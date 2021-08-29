@@ -30,7 +30,7 @@ public class AdminsData {
         }
     }
      
-    public static ArrayList<Administrador>leerAdmins() 
+    public static ArrayList<Administrador> leerAdmins() 
         throws IOException, ClassNotFoundException{
         ArrayList<Administrador> admins = null;
         try(ObjectInputStream objInputStream 

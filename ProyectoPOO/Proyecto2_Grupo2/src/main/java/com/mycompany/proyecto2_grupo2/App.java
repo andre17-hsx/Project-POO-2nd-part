@@ -20,7 +20,7 @@ public class App extends Application {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VistaInicio.fxml"));
             Parent root = fxmlLoader.load();
-            scene = new Scene(root, 700, 700);
+            scene = new Scene(root, 800, 800);
             stage.setScene(scene);
             stage.show();
         }catch(IOException ex){

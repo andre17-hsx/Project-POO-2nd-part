@@ -1,100 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaResidenteController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="625.0" text="Vista Residente">
-         <font>
-            <Font name="System Italic" size="18.0" />
-         </font>
-      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="616.0" text="Datos Residente" />
       <MenuBar>
         <menus>
-          <Menu fx:id="btnInformacion" mnemonicParsing="false" onAction="#mostrarInfo" text="Mostrar Informacion">
+          <Menu mnemonicParsing="false" text="Datos">
             <items>
-              <MenuItem fx:id="btnRegistroVehiculo" mnemonicParsing="false" onAction="#registrarVehiculo" text="Registrar Vehiculo" />
-                  <MenuItem fx:id="btnRegistrarVisitas" mnemonicParsing="false" onAction="#registroVisitas" text="Registrar Visitantes" />
+              <MenuItem fx:id="btnRegistroVehiculo" mnemonicParsing="false" onAction="#Vehiculos" text="Registro Vehiculo" />
+                  <MenuItem fx:id="btnRegistroVisitas" mnemonicParsing="false" onAction="#Visitas" text="Registro Visitas" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Pane prefHeight="381.0" prefWidth="600.0">
+      <Pane prefHeight="358.0" prefWidth="600.0">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="61.0" text="Nombre: ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="nombreR" layoutX="85.0" layoutY="14.0" prefHeight="27.0" prefWidth="61.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="55.0" prefHeight="27.0" prefWidth="61.0" text="Correo:">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="correoR" layoutX="85.0" layoutY="55.0" prefHeight="27.0" prefWidth="61.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="manzanaR" layoutX="85.0" layoutY="96.0" prefHeight="27.0" prefWidth="61.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="96.0" prefHeight="27.0" prefWidth="61.0" text="Manzana:">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="132.0" prefHeight="27.0" prefWidth="61.0" text="Villa:">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="223.0" prefHeight="27.0" prefWidth="181.0" text="Ingrese nuevo Pin">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="villaR" layoutX="85.0" layoutY="132.0" prefHeight="27.0" prefWidth="61.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="pinR" layoutX="85.0" layoutY="163.0" prefHeight="27.0" prefWidth="61.0" text=" ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtNuevoPin" layoutX="11.0" layoutY="256.0" />
-            <Label layoutX="14.0" layoutY="163.0" prefHeight="27.0" prefWidth="61.0" text="Pin:">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnCmabiarPin" layoutX="19.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#cambiarPin" text="Cambiar Pin" />
+            <GridPane layoutX="39.0" layoutY="57.0" prefHeight="250.0" prefWidth="361.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nombre:" />
+                  <Label text="Correo" GridPane.rowIndex="1" />
+                  <Label text="Manzana" GridPane.rowIndex="2" />
+                  <Label text="Villa" GridPane.rowIndex="3" />
+                  <Label text="Pin" GridPane.rowIndex="4" />
+                  <Label fx:id="nombreR" text="Nombre del Usuario" GridPane.columnIndex="1" />
+                  <Label fx:id="correoR" text="Correo del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="manzanaR" text="Manzana del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="villaR" text="Villa del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="pinR" text="Pin del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Ingrese el nuevo PIN" GridPane.rowIndex="5" />
+                  <TextField fx:id="txtNuevoPin" GridPane.rowIndex="6" />
+                  <Button fx:id="btnCambiarPin" mnemonicParsing="false" onMouseClicked="#cambiarPin" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+            <Button fx:id="btnVerDatos" layoutX="470.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#verDatos" text="Ver Datos" />
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
       </Pane>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
 </VBox>
