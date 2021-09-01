@@ -17,6 +17,7 @@ public class Residente extends Usuario{
     private String genero;
     private String pin;
     private Casa casa;
+    
     public Residente(String user, String contraseña) {
         super(user, contraseña);
     }
@@ -27,7 +28,7 @@ public class Residente extends Usuario{
         this.correo = correo;
         this.genero = genero;
         this.pin= pin;
-        casa=null;
+        this.casa=null;
     }
     
     public Residente(String user, String contraseña, String nombre, String correo, String genero, String pin, Casa casa){
@@ -90,7 +91,7 @@ public class Residente extends Usuario{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+       if (this == obj) {
             return true;
         }
         if (obj == null) {
@@ -110,6 +111,7 @@ public class Residente extends Usuario{
             return false;
         }
         return true;
+       
     }
 
     @Override
@@ -117,6 +119,15 @@ public class Residente extends Usuario{
         return "Residente{" + "nombre=" + nombre + ", correo=" + correo + ", genero=" + genero + '}';
     }
     
+    public String getManzana(){
+        Integer manzana = (int)casa.getUbicacion().getX();
+        return "Mz. "+manzana.toString();
+    }
+    
+    public String getVilla(){
+        Integer villa = (int)casa.getUbicacion().getY();
+        return "Vill. "+villa.toString();
+    }
     
    
 }

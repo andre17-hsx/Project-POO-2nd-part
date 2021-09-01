@@ -77,4 +77,15 @@ public class Casa implements Serializable{
         }
         return false;
     }
+    
+    public String verResidente(){
+        if(residente==null){
+            return "DESOCUPADA";
+        }
+        return residente.getNombre();
+
+    }
+    
+    
+    
 }

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import static javafx.application.Application.launch;
 
 /**
  * JavaFX App
@@ -20,7 +21,7 @@ public class App extends Application {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("VistaInicio.fxml"));
             Parent root = fxmlLoader.load();
-            scene = new Scene(root, 800, 800);
+            scene = new Scene(root, 700, 700);
             stage.setScene(scene);
             stage.show();
         }catch(IOException ex){

@@ -41,10 +41,12 @@ public class Ubicacion implements Serializable{
 
     @Override
     public String toString() {
-        return "Ubicacion{" + "x=" + x + ", y=" + y + '}';
+        return "\nMz= " +x+",\nVilla="+y;
     }
     
     public String toCSV() {
         return getX()+":"+getY();
     }
+    
+    
 }

@@ -55,17 +55,48 @@ public class VistaVehiculosController implements Initializable {
     public void setResidente(Residente residente){
         this.residente=residente;
     }
+
     public Residente getResidente(){
         return residente;
     }
+    
+    
     @FXML
-    private void RegistrarnuevoVehiculo(MouseEvent event) {
-        ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
-        vehiculos.add(new Vehiculo(txtMatricula.getText(), residente));
-        VehiculosData.escribirVehiculos(vehiculos);
-        Alert al= new Alert(Alert.AlertType.INFORMATION);
-        al.setContentText("Se ha registrado su vehiculo");
-        al.show();
+    private void RegistrarnuevoVehiculo(MouseEvent event) throws IOException, ClassNotFoundException {
+        //ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+        
+        if (txtMatricula.getText().trim().isEmpty()) {
+            Alert al = new Alert(Alert.AlertType.ERROR);
+            al.setHeaderText("VEHICULO ERROR");
+            al.setTitle("Error al registrar");
+            al.setContentText("CAMPO VACIO DEBE INGRESAR DATOS...!");
+            al.showAndWait();
+            txtMatricula.clear();
+        } else {
+            Vehiculo v = new Vehiculo(txtMatricula.getText(), residente);
+            if (validarVehiculo(v)) {
+                ArrayList<Vehiculo> vehiculos = VehiculosData.leerVehiculos();
+                vehiculos.add(v);
+                VehiculosData.escribirVehiculos(vehiculos);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("SUCESSFULL");
+                alert.setContentText("SU VEHICULO SE REGISTRO CORRECTAMENTE..!");
+                alert.showAndWait();
+                txtMatricula.clear();
+            } else {
+                Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setHeaderText("VEHICULO ERROR");
+                al.setTitle("Error al registrar");
+                al.setContentText("La matrícula ingresada ya existe");
+                al.showAndWait();
+                txtMatricula.clear();
+            }
+
+        }
+        
+
+        
+        
     }
 
     @FXML
@@ -100,4 +131,15 @@ public class VistaVehiculosController implements Initializable {
                     }
     }
     
+    
+    private boolean validarVehiculo(Vehiculo vNuevo) throws IOException, ClassNotFoundException{
+        ArrayList<Vehiculo> vehiculos = VehiculosData.leerVehiculos();
+        
+        for(Vehiculo v:vehiculos){
+            if(v.getMatricula().toLowerCase().equals(vNuevo.getMatricula().toLowerCase())){
+                return false;
+            }
+        }
+        return true;
+    }
 }

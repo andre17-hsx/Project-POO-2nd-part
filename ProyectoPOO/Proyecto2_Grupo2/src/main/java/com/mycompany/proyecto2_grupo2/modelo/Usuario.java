@@ -14,19 +14,19 @@ import java.util.Objects;
  */
 public class Usuario implements Serializable {
     private String user;
-    private String contraseña;
+    private String contrasenia;
     
-    public Usuario(String user, String contraseña){
+    public Usuario(String user, String contrasenia){
         this.user=user;
-        this.contraseña=contraseña;
+        this.contrasenia=contrasenia;
     }
     
     public String getUser(){
         return user;
     }
     
-    public String getContraseña(){
-        return contraseña;
+    public String getContrasenia(){
+        return contrasenia;
         
     }
 
@@ -34,15 +34,15 @@ public class Usuario implements Serializable {
         this.user = user;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 73 * hash + Objects.hashCode(this.user);
-        hash = 73 * hash + Objects.hashCode(this.contraseña);
+        hash = 73 * hash + Objects.hashCode(this.contrasenia);
         return hash;
     }
 
@@ -61,7 +61,7 @@ public class Usuario implements Serializable {
         if (!Objects.equals(this.user, other.user)) {
             return false;
         }
-        if (!Objects.equals(this.contraseña, other.contraseña)) {
+        if (!Objects.equals(this.contrasenia, other.contrasenia)) {
             return false;
         }
         return true;
