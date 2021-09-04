@@ -5,8 +5,11 @@
  */
 package com.mycompany.proyecto2_grupo2;
 
+import com.mycompany.proyecto2_grupo2.data.VehiculosData;
+import com.mycompany.proyecto2_grupo2.modelo.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,11 +99,40 @@ public class VistaSimulacionResidentesController implements Initializable {
     
     public void mostrarIngresoPeaton(){
         //IMPLEMENTAR ANIMACION DE INGRESO DE IUN PEATON
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("SUCESS");
+        alert.setContentText("INGRESASTE CON EXITO A LA CIUDADELA!");
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaAgradecimiento.fxml"));
+            Parent root = loader.load();
+            VistaAgradecimientoController vi = loader.<VistaAgradecimientoController>getController();
+            System.out.println(vi);
+            //vsrc.setResidente(VistaResidenteController.getResidente());
+            App.scene.setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println("no se ha podido cargar la vista");
+        }
     
     }
     
     public void mostrarIngresoVehiculo(){
         //IMPLEMENTAR ANIMACION DE INGRESO DE UN VEHICULO
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("SUCESS");
+        alert.setContentText("TU VEHICULO INGRESO CON EXITO A LA CIUDADELA!");
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaAgradecimiento.fxml"));
+            Parent root = loader.load();
+            VistaAgradecimientoController vi = loader.<VistaAgradecimientoController>getController();
+            System.out.println(vi);
+            //vsrc.setResidente(VistaResidenteController.getResidente());
+            App.scene.setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println("no se ha podido cargar la vista");
+        }
+        
     }
     
     public boolean buscarPin(String pin){
@@ -112,7 +144,7 @@ public class VistaSimulacionResidentesController implements Initializable {
     }
     
     @FXML
-    public void scanearMatricula(MouseEvent event){
+    public void scanearMatricula(MouseEvent event) throws IOException, ClassNotFoundException{
         
         if(buscarMatricula(txtMatricula.getText())){
             mostrarIngresoVehiculo();
@@ -126,11 +158,21 @@ public class VistaSimulacionResidentesController implements Initializable {
         }
     }
     
-    public boolean buscarMatricula(String cadena){
+    public boolean buscarMatricula(String cadena) throws IOException, ClassNotFoundException{
         boolean encontrado = false;
+        
+        List<Vehiculo> vehiculos = VehiculosData.leerVehiculos();
+        
+        for(Vehiculo v:vehiculos){
+        
+            if(v.getMatricula().toLowerCase().equals(cadena.toLowerCase())){
+                encontrado = true;
+                return encontrado;
+            }
+        }
+        
         //IMPLEMENTAR EL METODO BUSCAR MATRICULA DE LOS VEHICULOS DE LA BASE DE DATOS
         // vehiculos.dat
-        
         
         return encontrado;
     }

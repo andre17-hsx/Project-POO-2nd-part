@@ -9,53 +9,72 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaVisitasController">
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaVisitasController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="686.0" text="Vista Visitas" />
-      <MenuBar>
-        <menus>
-          <Menu fx:id="btnVisitas" mnemonicParsing="false" text="Registro Visitas">
-            <items>
-              <MenuItem fx:id="btnDatos" mnemonicParsing="false" onAction="#VerDatos" text="Datos" />
-                  <MenuItem fx:id="btnVehiculos" mnemonicParsing="false" onAction="#registrarVehiculo" text="Registro Vehiculos" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Pane prefHeight="654.0" prefWidth="679.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0">
          <children>
-            <Button fx:id="btnRegistrarVisita" layoutX="33.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#registrarVisitas" text="Registrar Visitas" />
-            <Label layoutX="52.0" layoutY="33.0" text="Fecha Inicio" />
-            <Label layoutX="323.0" layoutY="33.0" text="Fecha Fin" />
-            <TextField fx:id="txtfechaInicio" layoutX="140.0" layoutY="29.0" promptText="yyyy-MM-dd" />
-            <TextField fx:id="txtFechaFin" layoutX="391.0" layoutY="29.0" promptText="yyyy-MM-dd" />
-            <Button fx:id="btnBuscarVisitas" layoutX="585.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar" />
-            <TableView fx:id="tvDatosVisitantes" layoutX="32.0" layoutY="64.0" prefHeight="273.0" prefWidth="616.0">
-              <columns>
-                <TableColumn fx:id="filaNombre" prefWidth="143.1999969482422" text="Nombre" />
-                <TableColumn fx:id="filaCedula" prefWidth="135.20001220703125" text="Cedula" />
-                  <TableColumn fx:id="filaCodigo" prefWidth="111.20001220703125" text="Codigo" />
-                  <TableColumn fx:id="filaFecha" prefWidth="128.79986572265625" text="Fecha" />
-                  <TableColumn fx:id="filaEstado" prefWidth="102.4000244140625" text="Estado" />
-              </columns>
-            </TableView>
-            <Label layoutX="29.0" layoutY="433.0" text="Nombre:" />
-            <Label layoutX="29.0" layoutY="465.0" text="Cedula:" />
-            <Label layoutX="29.0" layoutY="501.0" text="Correo:" />
-            <Label layoutX="29.0" layoutY="534.0" text="Fecha:" />
-            <TextField fx:id="txtNombre" layoutX="89.0" layoutY="429.0" />
-            <TextField fx:id="txtCedula" layoutX="89.0" layoutY="461.0" />
-            <TextField fx:id="txtCorreo" layoutX="89.0" layoutY="497.0" />
-            <TextField fx:id="txtFecha" layoutX="89.0" layoutY="530.0" promptText="yyyy-MM-dd" />
-            <Label layoutX="29.0" layoutY="566.0" text="Hora" />
-            <TextField id="txtHora" fx:id="txtHora" layoutX="89.0" layoutY="562.0" promptText="HH:mm:ss" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="686.0" text="VISTA VISITAS">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <MenuBar>
+               <menus>
+                  <Menu fx:id="btnVisitas" mnemonicParsing="false" text="Registro Visitas">
+                     <items>
+                        <MenuItem fx:id="btnDatos" mnemonicParsing="false" onAction="#VerDatos" text="Datos" />
+                        <MenuItem fx:id="btnVehiculos" mnemonicParsing="false" onAction="#registrarVehiculo" text="Registro Vehiculos" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Pane id="paneVisitas" fx:id="paneVisitas" prefHeight="403.0" prefWidth="702.0">
+               <children>
+                  <Button fx:id="btnBuscarVisitas" layoutX="567.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#buscar" prefHeight="38.0" prefWidth="93.0" text="Buscar">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnRemove" fx:id="btnRemove" layoutX="543.0" layoutY="338.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="115.0" text="Borrar Registro" />
+                  <Label layoutX="45.0" layoutY="21.0" text="Fecha Inicio :" />
+                  <Label layoutX="330.0" layoutY="21.0" text="Fecha Fin :" />
+                  <TextField fx:id="txtfechaInicio" layoutX="120.0" layoutY="17.0" promptText="yyyy-MM-dd" />
+                  <TextField fx:id="txtFechaFin" layoutX="394.0" layoutY="17.0" promptText="yyyy-MM-dd" />
+                  <TableView id="tvVisitas" fx:id="tvVisitas" layoutX="2.0" layoutY="64.0" prefHeight="260.0" prefWidth="700.0">
+                    <columns>
+                      <TableColumn id="tcNombre" fx:id="tcNombre" prefWidth="175.0" text="NOMBRE" />
+                      <TableColumn id="tcCedula" fx:id="tcCedula" prefWidth="146.0" text="CEDULA" />
+                        <TableColumn id="tcCodigo" fx:id="tcCodigo" prefWidth="175.0" text="CODIGO" />
+                        <TableColumn id="tcFecha" fx:id="tcFecha" prefWidth="104.0" text="FECHA" />
+                        <TableColumn id="TcEstado" fx:id="tcEstado" minWidth="0.0" prefWidth="66.0" text="ESTADO" />
+                    </columns>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TableView>
+               </children>
+            </Pane>
+            <Pane prefHeight="213.0" prefWidth="700.0">
+               <children>
+                  <Button fx:id="btnRegistrarVisita" layoutX="281.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#registrarVisitas" prefHeight="51.0" prefWidth="130.0" text="Registrar Visitas" />
+                  <Label layoutX="14.0" layoutY="18.0" text="Nombre:" />
+                  <Label layoutX="14.0" layoutY="50.0" text="Cedula:" />
+                  <Label layoutX="14.0" layoutY="86.0" text="Correo:" />
+                  <Label layoutX="14.0" layoutY="119.0" text="Fecha:" />
+                  <TextField fx:id="txtNombre" layoutX="74.0" layoutY="14.0" />
+                  <TextField fx:id="txtCedula" layoutX="74.0" layoutY="46.0" />
+                  <TextField fx:id="txtCorreo" layoutX="74.0" layoutY="82.0" />
+                  <TextField fx:id="txtFecha" layoutX="74.0" layoutY="115.0" promptText="yyyy-MM-dd" />
+                  <Label layoutX="14.0" layoutY="151.0" text="Hora" />
+                  <TextField id="txtHora" fx:id="txtHora" layoutX="74.0" layoutY="147.0" promptText="HH:mm:ss" />
+               </children>
+            </Pane>
          </children>
-      </Pane>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

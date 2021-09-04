@@ -80,6 +80,9 @@ public class VistaSimulacionVisitanteConCodigoController implements Initializabl
     public void mostrarIngresoVisitante(){
         //IMPLEMENTAR METODO PARA MOSTRAR INGRESO DE VISITANTE, UN GIF
         //IMAGEN O ALGO ASI
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("SUCESS");
+        alert.setContentText("INGRESASTE CON EXITO A LA CIUDADELA!");
     
     }
     

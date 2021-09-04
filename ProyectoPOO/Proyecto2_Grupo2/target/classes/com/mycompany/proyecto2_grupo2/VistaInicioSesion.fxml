@@ -24,10 +24,6 @@
          <font>
             <Font size="19.0" />
          </font></TextField>
-      <Button id="btnIngresar" fx:id="btnIngresar" layoutX="278.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#Ingresar" stylesheets="@vistainiciosesion.css" text="Ingresar">
-         <font>
-            <Font size="28.0" />
-         </font></Button>
       <Label layoutX="176.0" layoutY="131.0" text="Querido usuario ingrese sus datos :)">
          <font>
             <Font size="22.0" />
@@ -42,5 +38,10 @@
             <Font size="32.0" />
          </font>
       </Label>
+      <Button id="btnIngresar" fx:id="btnIngresar" layoutX="304.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#Ingresar" text="INGRESAR">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

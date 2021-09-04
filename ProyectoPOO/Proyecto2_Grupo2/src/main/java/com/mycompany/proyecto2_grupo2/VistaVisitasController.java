@@ -47,9 +47,17 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Properties;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -79,18 +87,6 @@ public class VistaVisitasController implements Initializable {
     @FXML
     private Button btnBuscarVisitas;
     @FXML
-    private TableView<Visitante> tvDatosVisitantes;
-    @FXML
-    private TableColumn<Visitante,String> filaNombre;
-    @FXML
-    private TableColumn<Visitante,String> filaCedula;
-    @FXML
-    private TableColumn<Visitante,String> filaCodigo;
-    @FXML
-    private TableColumn<Visitante,LocalDate> filaFecha;
-    @FXML
-    private TableColumn<Visitante,String> filaEstado;
-    @FXML
     private TextField txtNombre;
     @FXML
     private TextField txtCedula;
@@ -99,19 +95,84 @@ public class VistaVisitasController implements Initializable {
     @FXML
     private TextField txtFecha;
     
-    private static Residente residente;
+    private Residente residente;
     @FXML
     private TextField txtHora;
     
     private Visitante visitanteNuevo;
-    
+    @FXML
+    private TableView<Visita> tvVisitas;
+    @FXML
+    private Button btnRemove;
+    @FXML
+    private Pane paneVisitas;
+    @FXML
+    private TableColumn<Visita,String> tcNombre;
+    @FXML
+    private TableColumn<Visita,String> tcCedula;
+    @FXML
+    private TableColumn<Visita,String> tcCodigo;
+    @FXML
+    private TableColumn<Visita,String> tcFecha;
+    @FXML
+    private TableColumn<Visita,String> tcEstado;
     /**
      *
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+   
+               
+        //tcNombre.setCellValueFactory(new PropertyValueFactory<Visita,String>("nombre"));
+        //tvVisitas1.getColumns().addAll(tcNombre);
+        //paneVisitas.getChildren().addAll(tvVisitas1);
+        ObservableList<Visita> visitas = FXCollections.observableArrayList(
+                    new Visita("Juan","095sad2","111","2021-10-10","SI"),
+                    new Visita("CARLOS","095a2","112","2021-10-11","NO"),
+                    new Visita("pedro","aaa","113","2021-10-12","SI"),
+                    new Visita("oso","095sss02","114","2021-10-13","NO"),
+                    new Visita("Jessica","09ddqq502","115","2021-10-14","NO")
+        );
+        
+        tvVisitas.setItems(visitas);
+        tcNombre.setCellValueFactory(new PropertyValueFactory<Visita, String>("nombre"));
+        tcCedula.setCellValueFactory(new PropertyValueFactory<Visita, String>("cedula"));
+        tcCodigo.setCellValueFactory(new PropertyValueFactory<Visita, String>("codigoAcceso"));
+        tcFecha.setCellValueFactory(new PropertyValueFactory<Visita, String>("fecha"));
+        tcEstado.setCellValueFactory(new PropertyValueFactory<Visita, String>("estado"));
+        //tvVisitas.getColumns().addAll(tcNombre,tcCedula,tcCodigo,tcFecha,tcEstado);*/
+       
+        
+        //Remove Row from TableView
+        btnRemove.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                if(tvVisitas.getSelectionModel().isEmpty()){
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                    al.setHeaderText("ERROR");
+                    al.setTitle("REMOVE ERROR");
+                    al.setContentText("Tiene que seleccionar un item de la lista");
+                    al.showAndWait();
+                }else{
+                    visitas.remove(tvVisitas.getSelectionModel().getSelectedItem());
+                }
+                
+            }
+        });
+        
+        
+        visitas.addListener(new ListChangeListener() {
+ 
+            @Override
+            public void onChanged(ListChangeListener.Change change) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("SUCESS");
+                alert.setContentText("LA FILA SE BORRO CON EXITO!");
+            }
+        });
+        
     }    
     
     public void setResidente(Residente r){
@@ -130,7 +191,7 @@ public class VistaVisitasController implements Initializable {
                         Parent root = loader.load();
                         VistaResidenteController ic = loader.<VistaResidenteController>getController();
                         System.out.println(ic);
-                        ic.setResidente(VistaInicioSesionController.getResidenteEncontrado());
+                        ic.setResidente(getResidente());
                         App.scene.setRoot(root);
             
                         }catch(IOException ex){
@@ -146,7 +207,7 @@ public class VistaVisitasController implements Initializable {
                         Parent root = loader.load();
                         VistaVehiculosController vc = loader.<VistaVehiculosController>getController();
                         System.out.println(vc);
-                        vc.setResidente(VistaInicioSesionController.getResidenteEncontrado());
+                        vc.setResidente(getResidente());
                         App.scene.setRoot(root);
             
                         }catch(IOException ex){
@@ -378,35 +439,7 @@ public class VistaVisitasController implements Initializable {
     }
     
       
-    @FXML
-    public void filtrarVisitasIntervalo(LocalDate inicio,LocalDate fin) throws ParseException, IOException, ClassNotFoundException {
-    tvDatosVisitantes = new TableView<>();
-    
-    ObservableList<Visitante> visiRango = FXCollections.observableArrayList();
-    visiRango.add(new Visitante("jaime","cedula","correo1",LocalDate.parse("2021-10-10"),LocalTime.parse("10:10:10"),"ADOKKIUY"));
-    visiRango.add(new Visitante("jASD","cedula","correo1",LocalDate.parse("2021-10-10"),LocalTime.parse("10:10:10"),"ADOKKIUY"));
-    visiRango.add(new Visitante("jULIO","cedula","correo1",LocalDate.parse("2021-10-10"),LocalTime.parse("10:10:10"),"ADOKKIUY"));
-    tvDatosVisitantes.setItems(visiRango);
-    
-    TableColumn columnaDatos = new TableColumn("DATOS DE VISITANTES");
-    TableColumn<Visitante,String> filaNombre = new TableColumn("Nombre");
-    filaNombre.setCellValueFactory(new PropertyValueFactory <Visitante,String>("nombre"));
-    
-    TableColumn<Visitante,String> filaCedula = new TableColumn("Cedula");
-    filaNombre.setCellValueFactory(new PropertyValueFactory <Visitante,String>("cedula"));
-    
-    TableColumn<Visitante,String> filaCodigo= new TableColumn("Codigo");
-    filaNombre.setCellValueFactory(new PropertyValueFactory <Visitante,String>("codigoAcceso"));
-    
-    TableColumn<Visitante,String> filaFecha=new TableColumn("Fecha");
-    filaNombre.setCellValueFactory(new PropertyValueFactory <Visitante,String>("2021-10-10"));
-    
-    TableColumn<Visitante,String> filaEstado=new TableColumn("Estado");
-    filaNombre.setCellValueFactory(new PropertyValueFactory <Visitante,String>("estado"));
-    columnaDatos.getColumns().addAll(filaNombre,filaCedula,filaCodigo,filaFecha,filaEstado);
-    tvDatosVisitantes.getColumns().addAll(columnaDatos);
 
-    }
     
     @FXML
     public void buscar(MouseEvent event) throws ParseException, IOException, ClassNotFoundException
@@ -447,12 +480,21 @@ public class VistaVisitasController implements Initializable {
         }else{
                 fechaIn= LocalDate.parse(txtfechaInicio.getText());
                 fechaFinal= LocalDate.parse(txtFechaFin.getText());
-                filtrarVisitasIntervalo(fechaIn,fechaFinal);
+                filtrarVisitasIntervalo(fechaIn,fechaFinal); // AQUI FALTA TERMINAR EL METODO filtrarVisitasIntervalo();
         
         
         }
 
 
+    }
+    
+    
+    public List<Visita> filtrarVisitasIntervalo(LocalDate fInicio, LocalDate fFinal){
+        List<Visita> listaVisitas = null;
+        //IMPLEMENTAR ESTE METODO QUE DEVUELVE UNA LISTA FILTRADA ENTRE LAS FECHAS QUE INDICA
+        
+        return listaVisitas;
+    
     }
     
     
@@ -475,5 +517,72 @@ public class VistaVisitasController implements Initializable {
 
     }
     
+  
+   
+   //CLASE VISITA PARA MOSTRAR EN TABLE VIEW
+    public static class Visita {
+
+        private final SimpleStringProperty nombre;
+        private final SimpleStringProperty cedula;
+        private final SimpleStringProperty codigoAcceso;
+        private final SimpleStringProperty fecha;
+        private final SimpleStringProperty estado;
+
+        private Visita(String strNombre, String strCedula, String strCodigoAcceso, String strFecha,String strEstado) {
+            this.nombre = new SimpleStringProperty(strNombre);
+            this.cedula = new SimpleStringProperty(strCedula);
+            this.codigoAcceso = new SimpleStringProperty(strCodigoAcceso);
+            this.fecha = new SimpleStringProperty(strFecha);
+            this.estado = new SimpleStringProperty(strEstado);
+
+        }
+
+        public String getNombre() {
+            return nombre.get();
+        }
+
+        public String getCedula() {
+            return cedula.get();
+        }
+
+        public String getCodigoAcceso() {
+            return codigoAcceso.get();
+        }
+
+        public String getFecha() {
+            return fecha.get();
+        }
+        
+        public String getEstado() {
+            return estado.get();
+        }
+
+        public void setNombre(String strNombre) {
+            nombre.set(strNombre);
+        }
+
+        public void setCedula(String strCedula) {
+            cedula.set(strCedula);
+        }
+
+        public void setCodigoAcceso(String strCodigoAcceso) {
+            codigoAcceso.set(strCodigoAcceso);
+        }
+
+        public void setFecha(String strFecha) {
+            fecha.set(strFecha);
+        }
+        
+        public void setEstado(String strEstado) {
+            fecha.set(strEstado);
+        }
+    }
+
+   
+   
+   
+   
+   
+   
     
 }//FIN DE LA CLASE
