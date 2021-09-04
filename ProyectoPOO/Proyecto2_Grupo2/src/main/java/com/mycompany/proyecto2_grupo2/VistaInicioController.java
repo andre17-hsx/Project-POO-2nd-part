@@ -52,16 +52,15 @@ public class VistaInicioController implements Initializable {
 
     @FXML
     private void Simular(MouseEvent event) {
-        /*/try{
-            FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaInicioSesion.fxml"));
+        try{
+            FXMLLoader loader= new FXMLLoader(App.class.getResource("VistaInicioSimulacion.fxml"));
             
             Parent root = loader.load();
-            VistaInicioSesionController ic = loader.<VistaInicioSesionController>getController();
-            System.out.println(ic);
+            VistaInicioSimulacionController vis = loader.<VistaInicioSimulacionController>getController();
+            System.out.println(vis);
             App.scene.setRoot(root);
-            
         }catch(IOException ex){
             System.out.println("no se ha podido cargar la vista");
-        }/*/
+        }
     }
 }

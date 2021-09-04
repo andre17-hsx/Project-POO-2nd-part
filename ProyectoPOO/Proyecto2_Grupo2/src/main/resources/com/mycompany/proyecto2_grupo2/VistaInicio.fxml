@@ -9,15 +9,21 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaInicioController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="693.0" text="Vista Principal">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="680.0" text="VISTA PRINCIPAL">
          <font>
-            <Font name="System Italic" size="18.0" />
+            <Font name="System Bold" size="31.0" />
          </font>
       </Label>
       <Pane prefHeight="660.0" prefWidth="679.0">
          <children>
-            <Button fx:id="btnIniciosesion" layoutX="291.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#IniciarSesion" text="Inicio de sesion" />
-            <Button fx:id="btnSimulacion" layoutX="301.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#Simular" text="Simulacion" />
+            <Button fx:id="btnIniciosesion" layoutX="224.0" layoutY="173.0" mnemonicParsing="false" onMouseClicked="#IniciarSesion" text="Inicio de sesion">
+               <font>
+                  <Font size="27.0" />
+               </font></Button>
+            <Button id="btnSimulacion" fx:id="btnSimulacion" layoutX="251.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#Simular" text="Simulacion">
+               <font>
+                  <Font size="27.0" />
+               </font></Button>
          </children>
       </Pane>
    </children>

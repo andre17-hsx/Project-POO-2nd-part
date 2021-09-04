@@ -31,7 +31,7 @@
       <Pane prefHeight="641.0" prefWidth="679.0">
          <children>
             <Label layoutX="292.0" layoutY="243.0" text="Ingresar Matricula" />
-            <TextField fx:id="txtMatricula" layoutX="265.0" layoutY="308.0" />
+            <TextField id="txtMatricula" fx:id="txtMatricula" layoutX="265.0" layoutY="308.0" />
             <Label layoutX="238.0" layoutY="372.0" text="El vehiculo se registrara a su nombre :)" />
             <Button fx:id="btnRegistrarVehiculo" layoutX="307.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#RegistrarnuevoVehiculo" text="Registrar" />
          </children>

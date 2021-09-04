@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,8 +41,7 @@ public class VistaInicioSesionController implements Initializable {
     @FXML
     private Button btnIngresar;
     
-    private static String usuarioStatic;
-    private static String contraseniaStatic;
+    private static Residente residenteEncontrado;
     /**
      * Initializes the controller class.
      * 
@@ -57,8 +57,6 @@ public class VistaInicioSesionController implements Initializable {
 
         String usuario = txtUsuario.getText();
         String password = txtContrasenia.getText();
-        usuarioStatic =usuario;
-        contraseniaStatic = password;
 
         List<Administrador> admins = AdminsData.leerAdmins();
         List<Residente> residentes = ResidentesData.leerResidentes();
@@ -89,6 +87,7 @@ public class VistaInicioSesionController implements Initializable {
                     VistaResidenteController rc = loader.<VistaResidenteController>getController();
                     System.out.println(rc);
                     rc.setResidente(r);
+                    residenteEncontrado = r;
                     App.scene.setRoot(root);
                 } catch (IOException ex) {
                     System.out.println("no se ha podido cargar la Vista");
@@ -108,8 +107,25 @@ public class VistaInicioSesionController implements Initializable {
 
     }
     
-    public Usuario getCredenciales(){
-        Usuario u = new Usuario(usuarioStatic,contraseniaStatic);
-        return u;
+    public static Residente getResidenteEncontrado(){
+        return residenteEncontrado;
     }
+    
+    @FXML
+    public void regresarInicio(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaInicio.fxml"));
+            Parent root = loader.load();
+            VistaInicioController vi = loader.<VistaInicioController>getController();
+            System.out.println(vi);
+            //vsrc.setResidente(VistaResidenteController.getResidente());
+            App.scene.setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println("no se ha podido cargar la vista");
+        }
+    
+    }
+    
+    
 }

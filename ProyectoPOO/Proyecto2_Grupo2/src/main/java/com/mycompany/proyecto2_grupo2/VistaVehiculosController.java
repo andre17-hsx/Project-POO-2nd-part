@@ -36,7 +36,7 @@ public class VistaVehiculosController implements Initializable {
     @FXML
     private Button btnRegistrarVehiculo;
     
-    private Residente residente;
+    private static Residente residente;
     @FXML
     private Menu btnRegistroVehiculos;
     @FXML
@@ -107,7 +107,8 @@ public class VistaVehiculosController implements Initializable {
                         Parent root = loader.load();
                         VistaResidenteController ic = loader.<VistaResidenteController>getController();
                         System.out.println(ic);
-                        ic.setResidente(getResidente());
+                        //ic.setResidente(VistaVehiculosController.);
+                        ic.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
             
                         }catch(IOException ex){
@@ -123,7 +124,7 @@ public class VistaVehiculosController implements Initializable {
                         Parent root = loader.load();
                         VistaVisitasController vc = loader.<VistaVisitasController>getController();
                         System.out.println(vc);
-                        vc.setResidente(VistaResidenteController.getResidente());
+                        vc.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
                         
                     }catch(IOException ex){

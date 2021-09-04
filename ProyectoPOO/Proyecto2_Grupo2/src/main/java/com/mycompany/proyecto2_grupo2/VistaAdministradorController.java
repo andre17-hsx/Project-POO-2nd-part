@@ -45,9 +45,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Properties;
 import javafx.application.Platform;
-
 import javax.mail.Message;
-
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -321,7 +319,8 @@ public class VistaAdministradorController implements Initializable {
         //Inicializamos nuestras credenciales de remitente
         String remitente = "sistemabienesraicesg6@gmail.com";
         String clave = "sbr123456.";
-        String destino = "jeraslindao@gmail.com"; //A quien le quieres escribir.
+        //String destino = "jeraslindao@gmail.com"; //A quien le quieres escribir.
+        String destino = r.getCorreo();
         String asunto = "PROYECTO POO - 2DO PARCIAL - GRUPO 2";
         String usuario = r.getUser();
         String contrasenia = r.getContrasenia();

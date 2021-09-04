@@ -50,7 +50,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Properties;
 import javafx.application.Platform;
-
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -100,11 +99,12 @@ public class VistaVisitasController implements Initializable {
     @FXML
     private TextField txtFecha;
     
-    private Residente residente;
+    private static Residente residente;
     @FXML
     private TextField txtHora;
     
     private Visitante visitanteNuevo;
+    
     /**
      *
      * Initializes the controller class.
@@ -130,7 +130,7 @@ public class VistaVisitasController implements Initializable {
                         Parent root = loader.load();
                         VistaResidenteController ic = loader.<VistaResidenteController>getController();
                         System.out.println(ic);
-                        ic.setResidente(getResidente());
+                        ic.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
             
                         }catch(IOException ex){
@@ -146,7 +146,7 @@ public class VistaVisitasController implements Initializable {
                         Parent root = loader.load();
                         VistaVehiculosController vc = loader.<VistaVehiculosController>getController();
                         System.out.println(vc);
-                        vc.setResidente(getResidente());
+                        vc.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
             
                         }catch(IOException ex){
@@ -335,7 +335,8 @@ public class VistaVisitasController implements Initializable {
         //Inicializamos nuestras credenciales de remitente
         String remitente = "sistemabienesraicesg6@gmail.com";
         String clave = "sbr123456.";
-        String destino = "jeraslindao@gmail.com"; //A quien le quieres escribir.
+        //String destino = "jeraslindao@gmail.com"; //A quien le quieres escribir.
+        String destino = v.getCorreo();
         String asunto = "PROYECTO POO - 2DO PARCIAL - GRUPO 2";
         String visitante = v.getNombre();
         String fecha = v.getFecha().toString();

@@ -70,16 +70,28 @@ public class VistaResidenteController implements Initializable {
         
     }
     
-    
+    @FXML
+    private void salir(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaInicio.fxml"));
+            Parent root = loader.load();
+            VistaInicioController ic = loader.<VistaInicioController>getController();
+            System.out.println(ic);
+            App.scene.setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println("no se ha podido cargar la vista");
+        }
+    }
 
     @FXML
     private void verDatos(MouseEvent event) {
         gpDatos.setDisable(false);
-        this.nombreR.setText(residente.getNombre());
-        this.correoR.setText(residente.getCorreo());
-        this.pinR.setText(residente.getPin());
-        this.manzanaR.setText(residente.getManzana());
-        this.villaR.setText(residente.getVilla());
+        this.nombreR.setText(VistaInicioSesionController.getResidenteEncontrado().getNombre());
+        this.correoR.setText(VistaInicioSesionController.getResidenteEncontrado().getCorreo());
+        this.pinR.setText(VistaInicioSesionController.getResidenteEncontrado().getPin());
+        this.manzanaR.setText(VistaInicioSesionController.getResidenteEncontrado().getManzana());
+        this.villaR.setText(VistaInicioSesionController.getResidenteEncontrado().getVilla());
     }
     
     public void setResidente(Residente residente){
@@ -99,7 +111,7 @@ public class VistaResidenteController implements Initializable {
                         Parent root = loader.load();
                         VistaVehiculosController vc = loader.<VistaVehiculosController>getController();
                         System.out.println(vc);
-                        vc.setResidente(VistaResidenteController.getResidente());
+                        vc.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
                         
                     }catch(IOException ex){
@@ -115,7 +127,7 @@ public class VistaResidenteController implements Initializable {
                         Parent root = loader.load();
                         VistaVisitasController vc = loader.<VistaVisitasController>getController();
                         System.out.println(vc);
-                        vc.setResidente(VistaResidenteController.getResidente());
+                        vc.setResidente(VistaInicioSesionController.getResidenteEncontrado());
                         App.scene.setRoot(root);
                         
                     }catch(IOException ex){

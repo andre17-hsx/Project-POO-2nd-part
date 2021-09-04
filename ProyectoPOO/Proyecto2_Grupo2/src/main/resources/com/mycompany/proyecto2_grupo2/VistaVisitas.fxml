@@ -30,13 +30,13 @@
       </MenuBar>
       <Pane prefHeight="654.0" prefWidth="679.0">
          <children>
-            <Button fx:id="btnRegistrarVisita" layoutX="33.0" layoutY="576.0" mnemonicParsing="false" text="Registrar Visitas" />
+            <Button fx:id="btnRegistrarVisita" layoutX="33.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#registrarVisitas" text="Registrar Visitas" />
             <Label layoutX="52.0" layoutY="33.0" text="Fecha Inicio" />
             <Label layoutX="323.0" layoutY="33.0" text="Fecha Fin" />
-            <TextField fx:id="txtfechaInicio" layoutX="140.0" layoutY="29.0" />
-            <TextField fx:id="txtFechaFin" layoutX="391.0" layoutY="29.0" />
-            <Button fx:id="btnBuscarVisitas" layoutX="585.0" layoutY="29.0" mnemonicParsing="false" text="Buscar" />
-            <TableView layoutX="32.0" layoutY="64.0" prefHeight="273.0" prefWidth="616.0">
+            <TextField fx:id="txtfechaInicio" layoutX="140.0" layoutY="29.0" promptText="yyyy-MM-dd" />
+            <TextField fx:id="txtFechaFin" layoutX="391.0" layoutY="29.0" promptText="yyyy-MM-dd" />
+            <Button fx:id="btnBuscarVisitas" layoutX="585.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar" />
+            <TableView fx:id="tvDatosVisitantes" layoutX="32.0" layoutY="64.0" prefHeight="273.0" prefWidth="616.0">
               <columns>
                 <TableColumn fx:id="filaNombre" prefWidth="143.1999969482422" text="Nombre" />
                 <TableColumn fx:id="filaCedula" prefWidth="135.20001220703125" text="Cedula" />
@@ -46,13 +46,15 @@
               </columns>
             </TableView>
             <Label layoutX="29.0" layoutY="433.0" text="Nombre:" />
-            <Label layoutX="33.0" layoutY="465.0" text="Cedula:" />
-            <Label layoutX="33.0" layoutY="501.0" text="Correo:" />
-            <Label layoutX="33.0" layoutY="534.0" text="Fecha:" />
+            <Label layoutX="29.0" layoutY="465.0" text="Cedula:" />
+            <Label layoutX="29.0" layoutY="501.0" text="Correo:" />
+            <Label layoutX="29.0" layoutY="534.0" text="Fecha:" />
             <TextField fx:id="txtNombre" layoutX="89.0" layoutY="429.0" />
             <TextField fx:id="txtCedula" layoutX="89.0" layoutY="461.0" />
             <TextField fx:id="txtCorreo" layoutX="89.0" layoutY="497.0" />
-            <TextField fx:id="txtFecha" layoutX="89.0" layoutY="530.0" />
+            <TextField fx:id="txtFecha" layoutX="89.0" layoutY="530.0" promptText="yyyy-MM-dd" />
+            <Label layoutX="29.0" layoutY="566.0" text="Hora" />
+            <TextField id="txtHora" fx:id="txtHora" layoutX="89.0" layoutY="562.0" promptText="HH:mm:ss" />
          </children>
       </Pane>
    </children>

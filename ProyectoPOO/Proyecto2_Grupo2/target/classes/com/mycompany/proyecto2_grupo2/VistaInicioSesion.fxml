@@ -4,14 +4,43 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaInicioSesionController">
    <children>
-      <Label layoutX="308.0" layoutY="185.0" text="Usuario" />
-      <Label layoutX="299.0" layoutY="333.0" text="Contraseña" />
-      <TextField fx:id="lblUsuario" layoutX="255.0" layoutY="241.0" />
-      <TextField fx:id="lblContraseña" layoutX="255.0" layoutY="378.0" />
-      <Button fx:id="btnIngresar" layoutX="298.0" layoutY="458.0" mnemonicParsing="false" onMouseClicked="#Ingresar" text="Ingresar" />
-      <Label layoutX="233.0" layoutY="106.0" text="Querido usuario ingrese sus datos :)" />
+      <Label layoutX="304.0" layoutY="207.0" text="Usuario">
+         <font>
+            <Font size="27.0" />
+         </font></Label>
+      <Label layoutX="282.0" layoutY="326.0" text="Contraseña">
+         <font>
+            <Font size="27.0" />
+         </font></Label>
+      <TextField id="txtUsuario" fx:id="txtUsuario" layoutX="232.0" layoutY="256.0">
+         <font>
+            <Font size="19.0" />
+         </font></TextField>
+      <TextField id="txtContrasenia" fx:id="txtContrasenia" layoutX="232.0" layoutY="374.0">
+         <font>
+            <Font size="19.0" />
+         </font></TextField>
+      <Button id="btnIngresar" fx:id="btnIngresar" layoutX="278.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#Ingresar" stylesheets="@vistainiciosesion.css" text="Ingresar">
+         <font>
+            <Font size="28.0" />
+         </font></Button>
+      <Label layoutX="176.0" layoutY="131.0" text="Querido usuario ingrese sus datos :)">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Button id="btnInicio" fx:id="btnInicio" layoutX="582.0" layoutY="630.0" mnemonicParsing="false" onAction="#regresarInicio" text="INICIO">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="274.0" layoutY="14.0" prefHeight="47.0" prefWidth="153.0" text="LOGGING">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
