@@ -7,14 +7,33 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaReportesController">
+<VBox id="hbFondo" fx:id="hbFondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@vistareportes.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaReportesController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="830.0" text="Reportes">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="830.0" text="REPORTES">
          <font>
-            <Font name="System Italic" size="18.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
+         <textFill>
+            <RadialGradient centerX="0.8777777777777778" centerY="0.8761904761904762" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
       </Label>
       <MenuBar>
         <menus>

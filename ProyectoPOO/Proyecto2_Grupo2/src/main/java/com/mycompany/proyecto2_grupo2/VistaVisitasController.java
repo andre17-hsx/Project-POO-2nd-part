@@ -6,6 +6,7 @@
 package com.mycompany.proyecto2_grupo2;
 
 import static com.mycompany.proyecto2_grupo2.VistaAdministradorController.enviarCorreo;
+import com.mycompany.proyecto2_grupo2.VistaVisitasController.Visita;
 import com.mycompany.proyecto2_grupo2.data.VehiculosData;
 import com.mycompany.proyecto2_grupo2.data.VisitantesData;
 import com.mycompany.proyecto2_grupo2.modelo.Residente;
@@ -83,7 +84,7 @@ public class VistaVisitasController implements Initializable {
     @FXML
     private TextField txtfechaInicio;
     @FXML
-    private TextField txtFechaFin;
+    private TextField txtfechaFin;
     @FXML
     private Button btnBuscarVisitas;
     @FXML
@@ -100,6 +101,8 @@ public class VistaVisitasController implements Initializable {
     private TextField txtHora;
     
     private Visitante visitanteNuevo;
+    
+    private Visitante visitanteActual;
     @FXML
     private TableView<Visita> tvVisitas;
     @FXML
@@ -127,25 +130,28 @@ public class VistaVisitasController implements Initializable {
         //tcNombre.setCellValueFactory(new PropertyValueFactory<Visita,String>("nombre"));
         //tvVisitas1.getColumns().addAll(tcNombre);
         //paneVisitas.getChildren().addAll(tvVisitas1);
-        ObservableList<Visita> visitas = FXCollections.observableArrayList(
+        
+      /* ObservableList<Visita> visitas = FXCollections.observableArrayList(
                     new Visita("Juan","095sad2","111","2021-10-10","SI"),
                     new Visita("CARLOS","095a2","112","2021-10-11","NO"),
                     new Visita("pedro","aaa","113","2021-10-12","SI"),
                     new Visita("oso","095sss02","114","2021-10-13","NO"),
                     new Visita("Jessica","09ddqq502","115","2021-10-14","NO")
-        );
+        );*/
         
-        tvVisitas.setItems(visitas);
+        /*tvVisitas.setItems(visitas);
         tcNombre.setCellValueFactory(new PropertyValueFactory<Visita, String>("nombre"));
         tcCedula.setCellValueFactory(new PropertyValueFactory<Visita, String>("cedula"));
         tcCodigo.setCellValueFactory(new PropertyValueFactory<Visita, String>("codigoAcceso"));
         tcFecha.setCellValueFactory(new PropertyValueFactory<Visita, String>("fecha"));
-        tcEstado.setCellValueFactory(new PropertyValueFactory<Visita, String>("estado"));
+        tcEstado.setCellValueFactory(new PropertyValueFactory<Visita, String>("estado"));/*
+      
         //tvVisitas.getColumns().addAll(tcNombre,tcCedula,tcCodigo,tcFecha,tcEstado);*/
        
         
         //Remove Row from TableView
-        btnRemove.setOnAction(new EventHandler<ActionEvent>() {
+        
+        /*btnRemove.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {
@@ -160,10 +166,10 @@ public class VistaVisitasController implements Initializable {
                 }
                 
             }
-        });
+        });*/
         
         
-        visitas.addListener(new ListChangeListener() {
+        /*visitas.addListener(new ListChangeListener() {
  
             @Override
             public void onChanged(ListChangeListener.Change change) {
@@ -171,7 +177,7 @@ public class VistaVisitasController implements Initializable {
                 alert.setHeaderText("SUCESS");
                 alert.setContentText("LA FILA SE BORRO CON EXITO!");
             }
-        });
+        });*/
         
     }    
     
@@ -442,12 +448,10 @@ public class VistaVisitasController implements Initializable {
 
     
     @FXML
-    public void buscar(MouseEvent event) throws ParseException, IOException, ClassNotFoundException
+    public void buscar(ActionEvent event) throws ParseException, IOException, ClassNotFoundException
     ,DateTimeParseException{
-        LocalDate fechaIn;
-        LocalDate fechaFinal;
         
-        if ((txtfechaInicio.getText().trim().isEmpty()) &&(txtFechaFin.getText().trim().isEmpty()) ) {
+        if ((txtfechaInicio.getText().trim().isEmpty()) &&(txtfechaFin.getText().trim().isEmpty()) ) {
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setHeaderText("DATA ERROR");
             al.setTitle("Error al BUSCAR");
@@ -459,7 +463,7 @@ public class VistaVisitasController implements Initializable {
             al.setTitle("Error al BUSCAR");
             al.setContentText("No ha ingresado RANGO de FECHA DE INICIO..!");
             al.showAndWait();
-        }else if(txtFechaFin.getText().trim().isEmpty()){
+        }else if(txtfechaFin.getText().trim().isEmpty()){
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setHeaderText("DATA ERROR");
             al.setTitle("Error al BUSCAR");
@@ -471,32 +475,155 @@ public class VistaVisitasController implements Initializable {
             al.setTitle("Error al BUSCAR");
             al.setContentText("El formato de la fecha es INCORRECTA por favor Ingrese <yyyy-MM-dd>..!");
             al.showAndWait();
-        }else if(!validarFecha(txtFechaFin.getText())){
+        }else if(!validarFecha(txtfechaFin.getText())){
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setHeaderText("DATA ERROR");
             al.setTitle("Error al BUSCAR");
             al.setContentText("El formato de la fecha es INCORRECTA por favor Ingrese <yyyy-MM-dd>..!");
-            al.showAndWait();
+            al.showAndWait();      
         }else{
+            LocalDate   fechaIn= LocalDate.parse(txtfechaInicio.getText());
+            LocalDate fechaFinal= LocalDate.parse(txtfechaFin.getText());
+            
+            if(fechaIn.isAfter(fechaFinal)){
+            Alert al = new Alert(Alert.AlertType.ERROR);
+            al.setHeaderText("DATA ERROR");
+            al.setTitle("Error al BUSCAR");
+            al.setContentText("La Fecha final debe ser mayor que la inicial");
+            al.showAndWait();    
+            }else{
+            System.out.println("ENTRO Y DEBE MOSTRAR TABLA");
                 fechaIn= LocalDate.parse(txtfechaInicio.getText());
-                fechaFinal= LocalDate.parse(txtFechaFin.getText());
-                filtrarVisitasIntervalo(fechaIn,fechaFinal); // AQUI FALTA TERMINAR EL METODO filtrarVisitasIntervalo();
-        
-        
+                fechaFinal= LocalDate.parse(txtfechaFin.getText());
+                List<Visitante> listaFiltrada = filtrarVisitasIntervalo(fechaIn,fechaFinal); // AQUI FALTA TERMINAR EL METODO filtrarVisitasIntervalo();
+                ObservableList<Visita> listaObservable = crearListaVisita(listaFiltrada);
+                mostrarTabla(listaObservable);
+            }
         }
 
 
     }
     
     
-    public List<Visita> filtrarVisitasIntervalo(LocalDate fInicio, LocalDate fFinal){
-        List<Visita> listaVisitas = null;
-        //IMPLEMENTAR ESTE METODO QUE DEVUELVE UNA LISTA FILTRADA ENTRE LAS FECHAS QUE INDICA
+    public List<Visitante> filtrarVisitasIntervalo(LocalDate fInicio, LocalDate fFinal) throws IOException, ClassNotFoundException{
+        List<Visitante> listaVisitas = VisitantesData.leerVisitantes();
+        List<Visitante> listaFiltrada = new ArrayList<>();
         
-        return listaVisitas;
-    
+        for(Visitante v:listaVisitas){
+            LocalDate fechaVisitante = v.getFecha();
+            LocalTime horaVisitante = v.getHora();
+            System.out.println(v.getNombre());
+            System.out.println(v.getFecha());
+            System.out.println("fechavisitante"+fechaVisitante);
+            System.out.println(fInicio);
+            System.out.println("fechafinal"+fFinal);
+            
+            if (fechaVisitante.isAfter(fInicio) && fechaVisitante.isBefore(fFinal)) {
+                System.out.println("EN RANGO");;
+            }
+            
+            if((fechaVisitante.isAfter(fInicio))&&(fechaVisitante.isBefore(fFinal))){
+                listaFiltrada.add(v);
+                System.out.println(v.getNombre());
+            }
+        
+        }
+        return listaFiltrada;
+
     }
     
+    
+    public ObservableList<Visita> crearListaVisita(List<Visitante> visitantes){
+        ObservableList<Visita> visitasGeneradas = FXCollections.observableArrayList();
+        String nombre;String cedula; String codigoAcceso;String fecha;String estado;
+        
+        for(Visitante v:visitantes){
+            nombre = v.getNombre();
+            cedula = v.getCedula();
+            codigoAcceso = v.getCodigo();
+            fecha = v.getFecha().toString();
+            if(v.getValidezCodigo()){
+                estado = "ACTIVO";
+            }else{
+                estado = "INACTIVO";
+            }
+            Visita visita = new Visita(nombre,cedula,codigoAcceso,fecha,estado);
+            visitasGeneradas.add(visita);
+            System.out.println(visita.getNombre());
+            System.out.println(visita.getFecha());
+            System.out.println(visita.getCodigoAcceso());
+        }
+        
+        return visitasGeneradas;
+    
+        
+    }
+    
+    public void mostrarTabla(ObservableList<Visita> visitaObservable){
+        
+        tvVisitas.setItems(visitaObservable);
+        tcNombre.setCellValueFactory(new PropertyValueFactory<Visita, String>("nombre"));
+        tcCedula.setCellValueFactory(new PropertyValueFactory<Visita, String>("cedula"));
+        tcCodigo.setCellValueFactory(new PropertyValueFactory<Visita, String>("codigoAcceso"));
+        tcFecha.setCellValueFactory(new PropertyValueFactory<Visita, String>("fecha"));
+        tcEstado.setCellValueFactory(new PropertyValueFactory<Visita, String>("estado"));
+        //tvVisitas.getColumns().addAll(tcNombre,tcCedula,tcCodigo,tcFecha,tcEstado);*/
+       
+        
+        //Remove Row from TableView
+        btnRemove.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                if(tvVisitas.getSelectionModel().isEmpty()){
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                    al.setHeaderText("ERROR");
+                    al.setTitle("REMOVE ERROR");
+                    al.setContentText("Tiene que seleccionar un item de la lista");
+                    al.showAndWait();
+                }else{
+                    Visita newVisita = tvVisitas.getSelectionModel().getSelectedItem();
+                    if(newVisita.getEstado().equals("ACTIVO")){
+                        visitaObservable.remove(tvVisitas.getSelectionModel().getSelectedItem());
+                        try {
+                            if(borrarVisita(newVisita)){
+                                Alert al = new Alert(Alert.AlertType.INFORMATION);
+                                al.setHeaderText("REMOVE");
+                                al.setTitle("REMOVING");
+                                al.setContentText("LA VISITA SE BORRO DE LA BASE DE DATOS");
+                                al.showAndWait();
+                            }else{
+                                
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        } catch (ClassNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                    }else{
+                        Alert al = new Alert(Alert.AlertType.ERROR);
+                        al.setHeaderText("ERROR");
+                        al.setTitle("REMOVE ERROR");
+                        al.setContentText("NO PUEDES BORRAR UNA VISITA QUE YA INGRESO");
+                        al.showAndWait();
+                    }
+                }
+                
+            }
+        });
+        
+        
+        visitaObservable.addListener(new ListChangeListener() {
+ 
+            @Override
+            public void onChanged(ListChangeListener.Change change) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("SUCESS");
+                alert.setContentText("LA FILA SE BORRO CON EXITO!");
+            }
+        });
+    
+    }
     
    class enviarClaveAcceso implements Runnable {
 
@@ -516,6 +643,27 @@ public class VistaVisitasController implements Initializable {
         }
 
     }
+   
+   public boolean borrarVisita(Visita visitaBorrar) throws IOException, ClassNotFoundException{
+       ArrayList<Visitante> visitantes= VisitantesData.leerVisitantes();
+       int pos = 0;
+       boolean e = false;
+       for(Visitante v:visitantes){
+           String nombre = visitaBorrar.getNombre();
+           String cedula = visitaBorrar.getCedula();
+           if(v.getNombre().toLowerCase().equals(nombre.toLowerCase())){
+               if(v.getCedula().toLowerCase().equals(cedula.toLowerCase())){
+                   e = true;
+                   visitantes.remove(pos);
+                   VisitantesData.escribirVisitantes(visitantes);
+                   return e;
+               }
+           }
+           pos+=1;
+       }
+       return false;
+       
+   }
     
   
    

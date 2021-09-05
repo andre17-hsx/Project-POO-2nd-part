@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaResidenteController">
+<VBox id="hbFondo" fx:id="hbFondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@vistaresidente.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaResidenteController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="691.0" text="Datos Residente">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="691.0" stylesheets="@vistaresidente.css" text="DATOS DE RESIDENTE">
          <font>
-            <Font size="30.0" />
-         </font></Label>
+            <Font size="35.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.9388888888888889" centerY="0.9523809523809523" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill></Label>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
@@ -32,10 +54,10 @@
       </MenuBar>
       <Pane prefHeight="630.0" prefWidth="700.0">
          <children>
-            <GridPane id="gpDatos" fx:id="gpDatos" layoutX="39.0" layoutY="57.0" prefHeight="250.0" prefWidth="361.0">
+            <GridPane id="gpDatos" fx:id="gpDatos" layoutX="39.0" layoutY="63.0" prefHeight="318.0" prefWidth="592.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="207.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.0" minWidth="10.0" prefWidth="353.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -47,22 +69,69 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nombre:" />
-                  <Label text="Correo" GridPane.rowIndex="1" />
-                  <Label text="Manzana" GridPane.rowIndex="2" />
-                  <Label text="Villa" GridPane.rowIndex="3" />
-                  <Label text="Pin" GridPane.rowIndex="4" />
-                  <Label fx:id="nombreR" text="Nombre del Usuario" GridPane.columnIndex="1" />
-                  <Label fx:id="correoR" text="Correo del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="manzanaR" text="Manzana del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="villaR" text="Villa del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="pinR" text="Pin del Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Ingrese el nuevo PIN" GridPane.rowIndex="5" />
-                  <TextField fx:id="txtNuevoPin" GridPane.rowIndex="6" />
-                  <Button fx:id="btnCambiarPin" mnemonicParsing="false" onMouseClicked="#cambiarPin" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="Nombre:" textFill="#c7f208">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label text="Correo" textFill="#c7f208" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label text="Manzana" textFill="#c7f208" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label text="Villa" textFill="#c7f208" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label text="Pin" textFill="#c7f208" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="nombreR" prefHeight="17.0" prefWidth="256.0" text="Nombre del Usuario" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="correoR" text="Correo del Usuario" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="manzanaR" text="Manzana del Usuario" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="villaR" text="Villa del Usuario" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label fx:id="pinR" text="Pin del Usuario" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label text="Ingrese el nuevo PIN" textFill="#c7f208" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="txtNuevoPin" prefHeight="42.0" prefWidth="239.0" GridPane.rowIndex="6" />
+                  <Button fx:id="btnCambiarPin" mnemonicParsing="false" onMouseClicked="#cambiarPin" prefHeight="42.0" prefWidth="103.0" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Button>
                </children>
             </GridPane>
-            <Button fx:id="btnVerDatos" layoutX="470.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#verDatos" text="Ver Datos" />
+            <Button fx:id="btnVerDatos" layoutX="454.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#verDatos" prefHeight="51.0" prefWidth="149.0" text="VER DATOS">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <ImageView fitHeight="183.0" fitWidth="256.0" layoutX="64.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@data.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

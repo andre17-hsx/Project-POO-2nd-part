@@ -129,5 +129,16 @@ public class Residente extends Usuario{
         return "Vill. "+villa.toString();
     }
     
+    public String getUbiMz(){
+        Double x = casa.getUbicacion().getX();
+        String ubi = x.toString();
+        return ubi;
+    }
+    
+    public String getUbiVil() {
+        Double y = casa.getUbicacion().getY();
+        String ubi = y.toString();
+        return ubi;
+    }
    
 }

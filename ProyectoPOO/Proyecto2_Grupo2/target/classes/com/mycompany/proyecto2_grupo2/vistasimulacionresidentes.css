@@ -32,3 +32,8 @@
     -fx-text-fill: green;
     -fx-font-weight: bold;   
 }
+
+#aPaneFondo{
+    -fx-background-image: url('fondoSimulacion4.jpg');
+    -fx-background-size: 100% 100%;
+}

@@ -10,6 +10,8 @@ import com.mycompany.proyecto2_grupo2.data.ResidentesData;
 import com.mycompany.proyecto2_grupo2.modelo.Residente;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -71,7 +73,7 @@ public class VistaSimulacionVisitanteSinCodigoController implements Initializabl
         String vil = txtVillaResidente.getText();
         
         if (validarDatos()) {
-            if (buscarResidente(nombre,mz,vil)) {
+            if (buscarResidente()) {
                 Thread t1 = new Thread(new notificarResidente());
                 t1.setDaemon(true);
                 t1.start();
@@ -94,16 +96,35 @@ public class VistaSimulacionVisitanteSinCodigoController implements Initializabl
     
     }
     
-    public boolean buscarResidente(String nombre,String mz,String villa) throws IOException, ClassNotFoundException{
+    public boolean buscarResidente() throws IOException, ClassNotFoundException{
         boolean encontrado = false;
         residenteEncontrado = null;
+        
         List<Residente> residentes = ResidentesData.leerResidentes();
         for(Residente r: residentes){
-            if((r.getNombre().toLowerCase().equals(nombre)) && (r.getManzana().equals(mz))
-                    &&(r.getVilla().equals(villa))){
-                residenteEncontrado = r;
-                encontrado = true;
+                String nResidente = r.getNombre().toLowerCase();
+                String nResidenteBuscar = txtNombreResidente.getText().toLowerCase();
+                Double manz = Double.parseDouble(txtManzanaResidente.getText());
+                Double vil = Double.parseDouble(txtVillaResidente.getText());
+                Double rMz = r.getCasa().getUbicacion().getX();
+                Double rVilla = r.getCasa().getUbicacion().getY();
+            if (nResidente.equals(nResidenteBuscar)) {
+                if (manz.equals(rMz)) {
+                    if (vil.equals(rVilla)) {
+                        System.out.println("SI SE ENCONTRO Y SE ENVIARA MSJ");
+                        residenteEncontrado = r;
+                        encontrado = true;
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText("SUCESS");
+                        alert.setContentText("SE HA ENVIADO UNA SOLICITUD AL RESIDENTE, EN CASO DE APROBACION,"
+                                + "El Residente le enviará un correo, con validez de 15 minutos!");
+                        alert.showAndWait();
+                        return encontrado;
+                    }
+
+                }
             }
+            System.out.println("NO SE ENCUENTRA...");
         }
         
         return encontrado;
@@ -171,6 +192,11 @@ public class VistaSimulacionVisitanteSinCodigoController implements Initializabl
         String destino = residenteEncontrado.getCorreo();
         String visitante = txtNombreVisitante.getText();
         String cedulaVisitante = txtCedulaVisitante.getText();
+        String claveTemporal =String8Character();
+        LocalDate fe= LocalDate.now();
+        LocalTime ho= LocalTime.now();
+        ClaveTemporal c = new ClaveTemporal(claveTemporal,fe,ho);
+        App.agregarClaveTemporal(new ClaveTemporal(claveTemporal,fe,ho));
         
         //Configuramos las credenciales, host, puerto para enviar correo, usando smtp de Gmail
         Properties props = new Properties();
@@ -195,7 +221,7 @@ public class VistaSimulacionVisitanteSinCodigoController implements Initializabl
             mensaje.setSubject(asunto);
             mensaje.setText("Estimado Sr."+residente+"Le informamos que el Sr."+visitante+
                     ",Desea visitarlo\n\n SI autoriza su ingreso por favor enviele la siguiente clave de acceso"
-                            + "\n\nCLAVE ="+String8Character());
+                            + "\n\nCLAVE ="+claveTemporal);
             Transport transport = session.getTransport("smtp");
             transport.connect("smtp.gmail.com",remitente,clave);
             transport.sendMessage(mensaje,mensaje.getAllRecipients());

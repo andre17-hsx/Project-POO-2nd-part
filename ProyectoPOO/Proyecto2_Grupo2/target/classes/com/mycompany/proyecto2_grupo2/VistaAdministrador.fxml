@@ -13,14 +13,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaAdministradorController">
+<VBox fx:id="hbFondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@vistaadministrador.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaAdministradorController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="709.0" text="Vista Administrador">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="680.0" text="VISTA ADMINISTRADOR">
          <font>
-            <Font name="System Italic" size="18.0" />
+            <Font size="45.0" />
          </font>
+         <textFill>
+            <RadialGradient centerX="0.5166666666666666" centerY="0.6142857142857143" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8157894611358643" green="0.7780214548110962" blue="0.7780214548110962" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.5789473652839661" green="0.5414230227470398" blue="0.5414230227470398" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
       </Label>
       <MenuBar>
         <menus>
@@ -32,13 +51,13 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane fx:id="paneMapa" prefHeight="483.0" prefWidth="679.0" />
-      <Pane prefHeight="147.0" prefWidth="646.0">
+      <Pane id="paneMapa" fx:id="paneMapa" prefHeight="483.0" prefWidth="679.0" />
+      <Pane prefHeight="179.0" prefWidth="680.0">
          <children>
-            <GridPane fx:id="formularioRegistro" disable="true" layoutY="30.0" prefHeight="102.0" prefWidth="653.0">
+            <GridPane fx:id="formularioRegistro" disable="true" layoutX="62.0" layoutY="23.0" prefHeight="104.0" prefWidth="556.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="139.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.0" minWidth="10.0" prefWidth="514.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -47,12 +66,21 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nombre:" />
-                  <Label text="Correo" GridPane.rowIndex="1" />
-                  <Label text="Genero" GridPane.rowIndex="2" />
+                  <Label text="Nombre:" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
+                  <Label text="Correo" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
+                  <Label text="Genero" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
                   <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtCorreo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField id="txtNombre" fx:id="txtNombre" prefHeight="25.0" prefWidth="262.0" GridPane.columnIndex="1" />
+                  <TextField id="txtCorreo" fx:id="txtCorreo" prefHeight="25.0" prefWidth="452.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ComboBox id="cmbxGenero" fx:id="cmbxGenero" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>

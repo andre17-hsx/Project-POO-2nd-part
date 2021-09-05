@@ -5,19 +5,40 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaSimulacionResidentesController">
+<AnchorPane id="aPaneFondo" fx:id="aPaneFondo" prefHeight="700.0" prefWidth="700.0" stylesheets="@vistasimulacionresidentes.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto2_grupo2.VistaSimulacionResidentesController">
    <children>
       <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="59.0" prefWidth="700.0">
          <children>
             <Label alignment="CENTER" prefHeight="59.0" prefWidth="704.0" text="ACCESO RESIDENTES" textAlignment="CENTER">
                <font>
-                  <Font size="23.0" />
+                  <Font size="50.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.9" startX="0.9857142857142858" startY="0.1857142857142857">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
          </children>
       </HBox>
@@ -27,24 +48,29 @@
                <content>
                   <Pane id="paneVehiculo" fx:id="paneVehiculo" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="112.0" layoutY="39.0" text="Ingrese matricula del Vehiculo">
+                        <Label layoutX="14.0" layoutY="14.0" text="INGRESE MATRICULA DEL VEHICULO">
                            <font>
-                              <Font size="23.0" />
+                              <Font size="31.0" />
                            </font>
                         </Label>
-                        <Label layoutX="34.0" layoutY="132.0" text="MATRICULA = ">
+                        <Label layoutX="48.0" layoutY="277.0" text="MATRICULA = ">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <TextField id="txtMatricula" fx:id="txtMatricula" layoutX="170.0" layoutY="126.0" prefHeight="25.0" prefWidth="243.0">
+                        <TextField id="txtMatricula" fx:id="txtMatricula" layoutX="184.0" layoutY="271.0" prefHeight="25.0" prefWidth="243.0">
                            <font>
                               <Font size="18.0" />
                            </font></TextField>
-                        <Button id="btnScanearMatricula" fx:id="btnScanearMatricula" alignment="CENTER" layoutX="145.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#scanearMatricula" prefHeight="53.0" prefWidth="216.0" stylesheets="@vistasimulacionresidentes.css" text="SCAN MATRICULA">
+                        <Button id="btnScanearMatricula" fx:id="btnScanearMatricula" alignment="CENTER" layoutX="157.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#scanearMatricula" prefHeight="53.0" prefWidth="216.0" stylesheets="@vistasimulacionresidentes.css" text="SCAN MATRICULA">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Button>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="359.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@camaras1.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                </content>
@@ -53,52 +79,52 @@
                <content>
                   <Pane id="panePeaton" fx:id="panePeaton" prefHeight="479.0" prefWidth="529.0">
                      <children>
-                        <Button id="btn_1" fx:id="btn_1" layoutX="76.0" layoutY="188.0" mnemonicParsing="false" text="1">
+                        <Button id="btn_1" fx:id="btn_1" layoutX="76.0" layoutY="188.0" mnemonicParsing="false" onAction="#click_uno" text="1">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_2" fx:id="btn_2" layoutX="135.0" layoutY="188.0" mnemonicParsing="false" text="2">
+                        <Button id="btn_2" fx:id="btn_2" layoutX="135.0" layoutY="188.0" mnemonicParsing="false" onAction="#click_dos" text="2">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_3" fx:id="btn_3" layoutX="194.0" layoutY="188.0" mnemonicParsing="false" text="3">
+                        <Button id="btn_3" fx:id="btn_3" layoutX="194.0" layoutY="188.0" mnemonicParsing="false" onAction="#click_tres" text="3">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_4" fx:id="btn_4" layoutX="76.0" layoutY="257.0" mnemonicParsing="false" text="4">
+                        <Button id="btn_4" fx:id="btn_4" layoutX="76.0" layoutY="257.0" mnemonicParsing="false" onAction="#click_cuatro" text="4">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_5" fx:id="btn_5" layoutX="135.0" layoutY="257.0" mnemonicParsing="false" text="5">
+                        <Button id="btn_5" fx:id="btn_5" layoutX="135.0" layoutY="257.0" mnemonicParsing="false" onAction="#click_cinco" text="5">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_6" fx:id="btn_6" layoutX="194.0" layoutY="257.0" mnemonicParsing="false" text="6">
+                        <Button id="btn_6" fx:id="btn_6" layoutX="194.0" layoutY="257.0" mnemonicParsing="false" onAction="#click_seis" text="6">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_7" fx:id="btn_7" layoutX="76.0" layoutY="326.0" mnemonicParsing="false" text="7">
+                        <Button id="btn_7" fx:id="btn_7" layoutX="76.0" layoutY="326.0" mnemonicParsing="false" onAction="#click_siete" text="7">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_8" fx:id="btn_8" layoutX="135.0" layoutY="326.0" mnemonicParsing="false" text="8">
+                        <Button id="btn_8" fx:id="btn_8" layoutX="135.0" layoutY="326.0" mnemonicParsing="false" onAction="#click_ocho" text="8">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_9" fx:id="btn_9" layoutX="194.0" layoutY="326.0" mnemonicParsing="false" text="9">
+                        <Button id="btn_9" fx:id="btn_9" layoutX="194.0" layoutY="326.0" mnemonicParsing="false" onAction="#click_nueve" text="9">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Button>
-                        <Button id="btn_0" fx:id="btn_0" layoutX="135.0" layoutY="395.0" mnemonicParsing="false" text="0">
+                        <Button id="btn_0" fx:id="btn_0" layoutX="135.0" layoutY="395.0" mnemonicParsing="false" onAction="#click_cero" text="0">
                            <font>
                               <Font size="32.0" />
                            </font>
@@ -113,16 +139,21 @@
                               <Font size="25.0" />
                            </font>
                         </Label>
-                        <Button id="btnIngresar" fx:id="btnIngresar" layoutX="338.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#scanearPin" stylesheets="@vistasimulacionresidentes.css" text="INGRESAR">
+                        <Button id="btnIngresar" fx:id="btnIngresar" layoutX="332.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#scanearPin" stylesheets="@vistasimulacionresidentes.css" text="INGRESAR">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <TextField id="txtPinPantalla" fx:id="txtPinPantalla" alignment="CENTER" layoutX="305.0" layoutY="114.0" stylesheets="@vistasimulacionresidentes.css">
+                        <Button id="btnClear" fx:id="btnClear" layoutX="253.0" layoutY="417.0" mnemonicParsing="false" onAction="#click_Clear" text="CS">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                        </TextField>
+                        </Button>
+                        <ImageView fitHeight="236.0" fitWidth="229.0" layoutX="265.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@scanner.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                </content>

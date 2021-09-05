@@ -5,12 +5,16 @@
  */
 package com.mycompany.proyecto2_grupo2;
 
+import static com.mycompany.proyecto2_grupo2.data.EntradaVisitanteData.escribirEntradasVisitantes;
+import com.mycompany.proyecto2_grupo2.data.InicializarSistema;
 import com.mycompany.proyecto2_grupo2.data.VisitantesData;
+import com.mycompany.proyecto2_grupo2.modelo.EntradaUsuario;
 import com.mycompany.proyecto2_grupo2.modelo.Visitante;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -83,6 +87,25 @@ public class VistaSimulacionVisitanteConCodigoController implements Initializabl
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("SUCESS");
         alert.setContentText("INGRESASTE CON EXITO A LA CIUDADELA!");
+        alert.showAndWait();
+        
+        ArrayList<EntradaUsuario> entradasVisitantes = new ArrayList<EntradaUsuario>();
+        LocalDate fechaActual = LocalDate.now();
+        LocalTime horaActual = LocalTime.now();
+        entradasVisitantes.add(new EntradaUsuario("VISITANTE_NUEVO",fechaActual,horaActual));     
+        escribirEntradasVisitantes(entradasVisitantes);
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaAgradecimiento.fxml"));
+            Parent root = loader.load();
+            VistaAgradecimientoController vi = loader.<VistaAgradecimientoController>getController();
+            System.out.println(vi);
+            //vsrc.setResidente(VistaResidenteController.getResidente());
+            App.scene.setRoot(root);
+
+        } catch (IOException ex) {
+            System.out.println("no se ha podido cargar la vista");
+        }
     
     }
     
@@ -91,6 +114,7 @@ public class VistaSimulacionVisitanteConCodigoController implements Initializabl
         boolean encontrado = false;
 
         List<Visitante> visitantes = VisitantesData.leerVisitantes();
+        ArrayList<Visitante> visitantesCopia = VisitantesData.leerVisitantes();
         int poslista = 0;
         
         for(Visitante v:visitantes){
@@ -99,14 +123,34 @@ public class VistaSimulacionVisitanteConCodigoController implements Initializabl
                 LocalTime horaVisita = v.getHora();
                 if (validarFechaHoraVisita(fechaVisita, horaVisita)) {
                     encontrado = true;
-                    visitantes.get(poslista).setValidesCodigo(false);
-                    escribirVisitantes(visitantes);
+                    System.out.println(poslista);
+                    visitantesCopia.get(poslista).setValidesCodigo(false);
+                    VisitantesData.escribirVisitantes(visitantesCopia);
                     return encontrado;
-                
                 }
             }
             poslista=poslista+1;
         
+        }
+        
+        poslista = 0;
+        List<ClaveTemporal> claves = App.getClavesTemporales();
+        for (ClaveTemporal cT : claves) {
+            System.out.println(cT.getClave());
+            if (cT.getClave().equals(clave)) {
+                System.out.println(cT.getActivo());
+                if (cT.getActivo()) {
+                    LocalDate fechaVisita = cT.getFecha();
+                    LocalTime horaVisita = cT.getHora();
+                    if (validarFechaHoraVisita(fechaVisita, horaVisita)) {
+                        encontrado = true;
+                        claves.get(poslista).setActivo(false);
+                        return encontrado;
+                    }
+                }
+            }
+            poslista = poslista + 1;
+
         }
         
         return encontrado;
@@ -118,6 +162,22 @@ public class VistaSimulacionVisitanteConCodigoController implements Initializabl
     public boolean validarFechaHoraVisita(LocalDate f,LocalTime h){
         boolean valido = false;
         //IMPLEMENTAR LA VALIDACION DE FECHA Y HORA
+        LocalTime horaTiempoReal = LocalTime.now();
+        LocalDate diaActual = LocalDate.now();
+        System.out.println("La hora es="+horaTiempoReal);
+        LocalTime horaInicio=horaTiempoReal.plusMinutes(-5);
+        System.out.println("La horaInicio es="+horaInicio);
+        LocalTime horaFin = horaTiempoReal.plusMinutes(5);
+        System.out.println("La horaFin="+horaFin);
+        
+        if(diaActual.isEqual(f)){
+            if((horaInicio.isBefore(h))&&(horaFin.isAfter(h))){
+                System.out.println("ESTAS DENTRO DEL TIEMPO");
+                valido = true;
+                return valido;
+            }
+        
+        }
         
         return valido;
     

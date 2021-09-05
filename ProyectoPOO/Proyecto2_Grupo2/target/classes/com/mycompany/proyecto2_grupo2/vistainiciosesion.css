@@ -8,9 +8,8 @@ and open the template in the editor.
     Author     : jeras
 */
 
-#btnIngresar{
-    
+
+#PaneFondo{
+    -fx-background-image: url('fondoPantalla.jpg');
     -fx-background-size: 100% 100%;
-    -fx-text-fill: green;
-    -fx-font-weight: bold;   
 }

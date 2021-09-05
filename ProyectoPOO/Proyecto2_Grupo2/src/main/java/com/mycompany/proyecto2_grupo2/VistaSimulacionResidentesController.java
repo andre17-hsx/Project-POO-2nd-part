@@ -5,10 +5,18 @@
  */
 package com.mycompany.proyecto2_grupo2;
 
+import static com.mycompany.proyecto2_grupo2.data.EntradaResidenteData.escribirEntradasResidentes;
+import static com.mycompany.proyecto2_grupo2.data.EntradaVisitanteData.escribirEntradasVisitantes;
+import com.mycompany.proyecto2_grupo2.data.ResidentesData;
 import com.mycompany.proyecto2_grupo2.data.VehiculosData;
+import com.mycompany.proyecto2_grupo2.modelo.EntradaUsuario;
+import com.mycompany.proyecto2_grupo2.modelo.Residente;
 import com.mycompany.proyecto2_grupo2.modelo.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -69,6 +77,14 @@ public class VistaSimulacionResidentesController implements Initializable {
     private Button btnIngresar;
     @FXML
     private TextField txtPinPantalla;
+    @FXML
+    private Button btnScanearMatricula;
+    @FXML
+    private Button btnClear;
+    
+    private boolean digito = false;
+    
+    private Residente residenteIngresado;
 
     /**
      * Initializes the controller class.
@@ -79,7 +95,7 @@ public class VistaSimulacionResidentesController implements Initializable {
     }
     
     @FXML
-    public void scanearPin(MouseEvent event){
+    public void scanearPin(MouseEvent event) throws IOException, ClassNotFoundException{
         String pin =  lblPinPantalla.getText();
         if(buscarPin(pin)){
             mostrarIngresoPeaton();
@@ -102,6 +118,14 @@ public class VistaSimulacionResidentesController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("SUCESS");
         alert.setContentText("INGRESASTE CON EXITO A LA CIUDADELA!");
+        alert.showAndWait();
+        
+        ArrayList<EntradaUsuario> entradasResidentes = new ArrayList<EntradaUsuario>();
+        LocalDate fechaActual = LocalDate.now();
+        LocalTime horaActual = LocalTime.now();
+        entradasResidentes.add(new EntradaUsuario(residenteIngresado.getNombre(),fechaActual,horaActual));     
+        escribirEntradasResidentes(entradasResidentes);
+        
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaAgradecimiento.fxml"));
             Parent root = loader.load();
@@ -135,10 +159,23 @@ public class VistaSimulacionResidentesController implements Initializable {
         
     }
     
-    public boolean buscarPin(String pin){
+    public boolean buscarPin(String pin) throws IOException, ClassNotFoundException{
         boolean encontrado = false;
-        //IMPLEMENTAR BUSCAR EL PIN Y DEVOLVER TRUE SI COINCIDE
-        //O FALSE SI ES INCORRECTO
+        List<Residente> residentes = ResidentesData.leerResidentes();
+        
+        for(Residente r:residentes){
+            System.out.println(r.getPin());
+            System.out.println(pin);
+            if(r.getPin().equals(pin)){
+                encontrado = true;
+                residenteIngresado = r;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText("SUCESS");
+                        alert.setContentText("EL PIN ES VALIDO");
+                        alert.showAndWait();
+                        return encontrado;
+            }
+        }
         
         return encontrado;
     }
@@ -177,7 +214,68 @@ public class VistaSimulacionResidentesController implements Initializable {
         return encontrado;
     }
     
+    
+    //MANEJO DE EVENTOS DE LOS BOTONES
+    public void click_cero(ActionEvent event){
+        digitoPantalla("0");
+    }
+    
+    public void click_uno(ActionEvent event) {
+        digitoPantalla("1");
+    }
 
+    public void click_dos(ActionEvent event) {
+        digitoPantalla("2");
+    }
+
+    public void click_tres(ActionEvent event) {
+        digitoPantalla("3");
+    }
+
+    public void click_cuatro(ActionEvent event) {
+        digitoPantalla("4");
+    }
+
+    public void click_cinco(ActionEvent event) {
+        digitoPantalla("5");
+    }
+
+    public void click_seis(ActionEvent event) {
+        digitoPantalla("6");
+    }
+
+    public void click_siete(ActionEvent event) {
+        digitoPantalla("7");
+    }
+
+    public void click_ocho(ActionEvent event) {
+        digitoPantalla("8");
+    }
+
+    public void click_nueve(ActionEvent event) {
+        digitoPantalla("9");
+    }
+    
+   public void click_Clear(ActionEvent event) {
+       lblPinPantalla.setText("");
+    }
+    
+    public void digitoPantalla(String numero){
+        String valorActual;
+            if(!digito ){
+                lblPinPantalla.setText("");
+            }
+        valorActual = lblPinPantalla.getText();
+        lblPinPantalla.setText(valorActual+numero);
+        
+        digito = true;
+    }
+
+
+    
+
+    
+    
     @FXML
     public void terminarSimulacion(ActionEvent event){
         try {

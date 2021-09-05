@@ -16,3 +16,8 @@ and open the template in the editor.
     -fx-text-fill: red;
     -fx-font-weight: bold;   
 }
+
+#aPaneFondo{
+    -fx-background-image: url('fondoSimulacion.jpg');
+    -fx-background-size: 100% 100%;
+}
