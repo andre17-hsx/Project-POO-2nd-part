@@ -5,11 +5,13 @@
  */
 package com.mycompany.proyecto2_grupo2.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rociomera
  */
-public class Ubicacion {
+public class Ubicacion implements Serializable{
     private double x; //Manzana
     private double y; //Villa
     public Ubicacion(double x, double y){
@@ -39,10 +41,12 @@ public class Ubicacion {
 
     @Override
     public String toString() {
-        return "Ubicacion{" + "x=" + x + ", y=" + y + '}';
+        return "\nMz= " +x+",\nVilla="+y;
     }
     
     public String toCSV() {
         return getX()+":"+getY();
     }
+    
+    
 }
